@@ -18,6 +18,7 @@ import SpellData from '../../types/spellData';
 import mixpanel from 'mixpanel-browser';
 import { SPELL_SCHEDULED_DATE_OVERRIDES } from '../../lib/constants';
 import { ZERO_ADDRESS } from '../../stores/accounts';
+import ReactGA from 'react-ga';
 
 type Props = {
   proposal: Proposal;
@@ -159,6 +160,10 @@ export default function ExecutiveOverviewCard({ proposal, spellData, isHat, ...p
                       id: 'openExecVoteModal',
                       product: 'governance-portal-v2',
                       page: 'Executive'
+                    });
+                    ReactGA.event({
+                      category: 'Executive',
+                      action: 'openExecVoteModal'
                     });
                     setVoting(true);
                     ev.stopPropagation();

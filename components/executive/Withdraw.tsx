@@ -18,6 +18,7 @@ import useTransactionStore, { transactionsSelectors, transactionsApi } from '../
 import { changeInputValue } from '../../lib/utils';
 import invariant from 'tiny-invariant';
 import mixpanel from 'mixpanel-browser';
+import ReactGA from 'react-ga';
 
 const ModalContent = ({ address, voteProxy, close, ...props }) => {
   invariant(address);
@@ -131,7 +132,11 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
             mixpanel.track('btn-click', {
               id: 'withdrawMkr',
               product: 'governance-portal-v2',
-              page: 'Executive',
+              page: 'Executive'
+            });
+            ReactGA.event({
+              category: 'Executive',
+              action: 'withdrawMkr'
             });
             const maker = await getMaker();
 
@@ -175,7 +180,11 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
             mixpanel.track('btn-click', {
               id: 'approveWithdraw',
               product: 'governance-portal-v2',
-              page: 'Executive',
+              page: 'Executive'
+            });
+            ReactGA.event({
+              category: 'Executive',
+              action: 'approveWithdraw'
             });
             const maker = await getMaker();
             const approveTxCreator = () =>

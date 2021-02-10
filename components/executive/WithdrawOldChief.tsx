@@ -14,6 +14,7 @@ import TxIndicators from '../TxIndicators';
 import useTransactionStore, { transactionsSelectors, transactionsApi } from '../../stores/transactions';
 import invariant from 'tiny-invariant';
 import mixpanel from 'mixpanel-browser';
+import ReactGA from 'react-ga';
 import oldChiefAbi from '../../lib/abis/oldChiefAbi.json';
 import oldVoteProxyAbi from '../../lib/abis/oldVoteProxyAbi.json';
 import oldIouAbi from '../../lib/abis/oldIouAbi.json';
@@ -107,6 +108,10 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
               product: 'governance-portal-v2',
               page: 'Executive'
             });
+            ReactGA.event({
+              category: 'Executive',
+              action: 'withdrawMkrOldChief'
+            });
             const maker = await getMaker();
 
             const freeTxCreator = voteProxy.address
@@ -158,6 +163,10 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
               id: 'approveWithdrawOldChief',
               product: 'governance-portal-v2',
               page: 'Executive'
+            });
+            ReactGA.event({
+              category: 'Executive',
+              action: 'approveWithdrawOldChief'
             });
             const maker = await getMaker();
             const approveTxCreator = () =>

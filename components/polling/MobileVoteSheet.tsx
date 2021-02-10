@@ -25,6 +25,7 @@ import VotingStatus from './PollVotingStatus';
 import ballotAnimation from '../../lib/animation/ballotSuccess.json';
 import { slideUp } from '../../lib/keyframes';
 import mixpanel from 'mixpanel-browser';
+import ReactGA from 'react-ga';
 
 enum ViewState {
   START,
@@ -221,6 +222,10 @@ export default function MobileVoteSheet({
                     id: 'addVoteToBallot',
                     product: 'governance-portal-v2',
                     page: 'Polling'
+                  });
+                  ReactGA.event({
+                    category: 'Polling',
+                    action: 'addVoteToBallot'
                   });
                   submit();
                 }}

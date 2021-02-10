@@ -20,6 +20,7 @@ import { changeInputValue } from '../../lib/utils';
 import { BoxWithClose } from './Withdraw';
 import invariant from 'tiny-invariant';
 import mixpanel from 'mixpanel-browser';
+import ReactGA from 'react-ga';
 
 const ModalContent = ({ address, voteProxy, close, ...props }) => {
   invariant(address);
@@ -128,6 +129,10 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
               product: 'governance-portal-v2',
               page: 'Executive'
             });
+            ReactGA.event({
+              category: 'Executive',
+              action: 'DepositMkr'
+            });
             const maker = await getMaker();
             const lockTxCreator = voteProxy
               ? () => voteProxy.lock(mkrToDeposit)
@@ -168,6 +173,10 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
               id: 'approveDeposit',
               product: 'governance-portal-v2',
               page: 'Executive'
+            });
+            ReactGA.event({
+              category: 'Executive',
+              action: 'approveDeposit'
             });
             const maker = await getMaker();
             const approveTxCreator = () =>
@@ -249,6 +258,10 @@ const Deposit = (props): JSX.Element => {
               product: 'governance-portal-v2',
               page: 'Executive'
             });
+            ReactGA.event({
+              category: 'Executive',
+              action: 'OpenDepositModalFromMigration'
+            });
             open();
           }}
           sx={{ textDecoration: 'underline', cursor: 'pointer' }}
@@ -264,6 +277,10 @@ const Deposit = (props): JSX.Element => {
               id: 'OpenDepositModal',
               product: 'governance-portal-v2',
               page: 'Executive'
+            });
+            ReactGA.event({
+              category: 'Executive',
+              action: 'OpenDepositModal'
             });
             open();
           }}

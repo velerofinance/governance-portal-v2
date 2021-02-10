@@ -12,6 +12,7 @@ import { getEtherscanLink } from '../../lib/utils';
 import VotingWeight from './VotingWeight';
 import PollBar from './PollBar';
 import mixpanel from 'mixpanel-browser';
+import ReactGA from 'react-ga';
 
 type Props = { ballot: Ballot; activePolls: Poll[]; network: SupportedNetworks; polls: Poll[] };
 export default function BallotBox({ ballot, activePolls, network, polls }: Props): JSX.Element {
@@ -64,11 +65,15 @@ export default function BallotBox({ ballot, activePolls, network, polls }: Props
           <Divider m="0" />
           <Flex p={3} sx={{ flexDirection: 'column' }}>
             <Button
-              onClick={()=>{
+              onClick={() => {
                 mixpanel.track('btn-click', {
                   id: 'reviewAndSubmitBallot',
                   product: 'governance-portal-v2',
-                  page: 'Polling',
+                  page: 'Polling'
+                });
+                ReactGA.event({
+                  category: 'Polling',
+                  action: 'reviewAndSubmitBallot'
                 });
                 startReview();
               }}

@@ -31,6 +31,7 @@ import { TXMined } from '../../types/transaction';
 import useAccountsStore from '../../stores/accounts';
 import Proposal, { CMSProposal } from '../../types/proposal';
 import mixpanel from 'mixpanel-browser';
+import ReactGA from 'react-ga';
 
 type Props = {
   close: () => void;
@@ -267,7 +268,11 @@ const VoteModal = ({ close, proposal, currentSlate = [] }: Props): JSX.Element =
               mixpanel.track('btn-click', {
                 id: 'vote',
                 product: 'governance-portal-v2',
-                page: 'Executive',
+                page: 'Executive'
+              });
+              ReactGA.event({
+                category: 'Executive',
+                action: 'vote'
               });
               vote(hatChecked, comment);
             }}

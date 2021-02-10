@@ -4,6 +4,7 @@ import { Icon } from '@makerdao/dai-ui-icons';
 import { getNumberWithOrdinal } from '../../lib/utils';
 import { ABSTAIN } from '../../lib/constants';
 import mixpanel from 'mixpanel-browser';
+import ReactGA from 'react-ga';
 
 const ChoiceSummary = ({ choice, poll, edit, voteIsPending, ...props }) => {
   const voteBoxStyle = props.showHeader ? {} : { width: '100%', justifyContent: 'center', mt: 3 };
@@ -25,11 +26,15 @@ const ChoiceSummary = ({ choice, poll, edit, voteIsPending, ...props }) => {
         ))
       )}
       <Button
-        onClick={()=>{
+        onClick={() => {
           mixpanel.track('btn-click', {
             id: 'editChoice',
             product: 'governance-portal-v2',
-            page: 'PollingReview',
+            page: 'PollingReview'
+          });
+          ReactGA.event({
+            category: 'PollingReview',
+            action: 'editChoice'
           });
           edit();
         }}
