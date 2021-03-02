@@ -11,6 +11,29 @@ import { CMSProposal } from '../types/proposal';
 import BlogPost from '../types/blogPost';
 import { parsePollMetadata } from './polling/parser';
 
+function createMarkdownFile(proposal) {
+  if (!proposal) return;
+  if (!proposal.about) return;
+  const fs = require('fs'); // eslint-disable-line @typescript-eslint/no-var-requires
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  const newDateObj = new Date(new Date(proposal.date).getTime() + 86400000);
+  const dateString = newDateObj.toLocaleDateString('en-US', options);
+  const path = `Executive vote - ${dateString}.md`;
+  let about = proposal.about;
+  while (about.charAt(0) === '\n' || about.charAt(0) === '\r') about = about.substring(1);
+  if (about.charAt(0) === '#') about = about.substring(about.indexOf('\n') + 1);
+  while (about.charAt(0) === '\n' || about.charAt(0) === '\r') about = about.substring(1);
+  const data = `---
+title: ${proposal.title}
+summary: ${proposal.proposalBlurb}
+date: ${proposal.date}
+address: "${proposal.address}"
+---
+${about}`;
+  fs.writeFileSync(path, data, err => console.error(err));
+  console.log('finished writing file');
+}
+
 export async function getExecutiveProposals(): Promise<CMSProposal[]> {
   if (process.env.USE_FS_CACHE) {
     const cachedProposals = fsCacheGet('proposals');
@@ -20,7 +43,7 @@ export async function getExecutiveProposals(): Promise<CMSProposal[]> {
   invariant(network in CMS_ENDPOINTS, `no cms endpoint known for network ${network}`);
   const topics = await (await fetch(CMS_ENDPOINTS[network].allTopics)).json();
   const spells = await (await fetch(CMS_ENDPOINTS[network].allSpells)).json();
-  let proposals: Array<any> = topics
+  const proposals: Array<any> = topics
     .filter(topic => topic.active)
     .filter(topic => !topic.govVote)
     .map(topic => topic.proposals)
@@ -54,7 +77,6 @@ export async function getExecutiveProposals(): Promise<CMSProposal[]> {
   });
 
   proposals.push(...oldSpells);
-  proposals = proposals.slice(0, 100);
 
   if (process.env.USE_FS_CACHE) fsCacheSet('proposals', JSON.stringify(proposals));
   return proposals;
@@ -62,6 +84,9 @@ export async function getExecutiveProposals(): Promise<CMSProposal[]> {
 
 export async function getExecutiveProposal(proposalId: string): Promise<CMSProposal | null> {
   const proposals = await getExecutiveProposals();
+  proposals.forEach(p => {
+    createMarkdownFile(p);
+  });
   const proposal = proposals.find(proposal => proposal.key === proposalId);
   if (!proposal) return null;
   invariant(proposal, `proposal not found for proposal id ${proposalId}`);
