@@ -13,14 +13,39 @@ import BlogPost from '../types/blogPost';
 import { parsePollMetadata } from './polling/parser';
 import { Octokit } from '@octokit/core';
 
+let proposalUrls2;
+
+async function createMarkdownFile(proposal, proposalUrls2) {
+  if (!proposal) return;
+  if (!proposal.about) return;
+  const fs = require('fs'); // eslint-disable-line @typescript-eslint/no-var-requires
+  const newProp = proposalUrls2.find(x => x.name === proposal.name);
+  console.log('newProp', newProp);
+  const proposalDoc2 = await (await fetch(newProp.download_url)).text();
+  const {
+    content,
+    data: { title, summary, address, date }
+  } = matter(proposalDoc2);
+  console.log('5');
+  const data = `---
+title: ${title}
+summary: ${summary ? summary : proposal.proposalBlurb}
+date: ${new Date(proposal.date).toISOString()}
+address: "${proposal.address}"
+---
+${content}`;
+  fs.writeFileSync(proposal.name, data, err => console.error(err));
+  console.log('markdown file: ', data);
+}
+
 export async function getExecutiveProposals(): Promise<CMSProposal[]> {
-  if (process.env.USE_FS_CACHE) {
-    const cachedProposals = fsCacheGet('proposals');
-    if (cachedProposals) return JSON.parse(cachedProposals);
-  } else if (process.env.NEXT_PUBLIC_USE_MOCK || isTestnet()) return require('../mocks/proposals.json');
+  // if (process.env.USE_FS_CACHE) {
+  //   const cachedProposals = fsCacheGet('proposals');
+  //   if (cachedProposals) return JSON.parse(cachedProposals);
+  // } else if (process.env.NEXT_PUBLIC_USE_MOCK || isTestnet()) return require('../mocks/proposals.json');
   const network = getNetwork();
 
-  const proposalIndex = await (await fetch(EXEC_PROPOSAL_INDEX)).json();
+  //const proposalIndex = await (await fetch(EXEC_PROPOSAL_INDEX)).json();
 
   const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
@@ -30,18 +55,26 @@ export async function getExecutiveProposals(): Promise<CMSProposal[]> {
     path: 'governance/votes'
   });
   const githubResponse = Array.isArray(data) ? data : [];
-  const proposalUrls = githubResponse.filter(x => x.type === 'file').map(x => x.download_url);
+  const proposalUrls = githubResponse.filter(x => x.type === 'file');
+
+  const { data: data2 } = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
+    owner: 'makerdao', //FIXME change to makerdao before merging
+    repo: 'community',
+    path: 'governance/votes'
+  });
+  const githubResponse2 = Array.isArray(data2) ? data2 : [];
+  proposalUrls2 = githubResponse2.filter(x => x.type === 'file');
 
   let proposals: CMSProposal[] = [];
   for (const proposalLink of proposalUrls) {
     if (!proposalLink) continue;
-    const proposalDoc = await (await fetch(proposalLink)).text();
+    const proposalDoc = await (await fetch(proposalLink.download_url)).text();
     const {
       content,
       data: { title, summary, address, date }
     } = matter(proposalDoc);
 
-    invariant(content && title && summary && address && date, 'Invalid proposal document');
+    //invariant(content && title && summary && address && date, 'Invalid proposal document');
     proposals.push({
       about: content,
       title,
@@ -49,13 +82,17 @@ export async function getExecutiveProposals(): Promise<CMSProposal[]> {
       key: slugify(title),
       address: address,
       date: String(date),
-      active: proposalIndex[network].includes(proposalLink)
+      active: false, //proposalIndex[network].includes(proposalLink),
+      name: proposalLink.name
     });
   }
 
   proposals = proposals.sort((a, b) => new Date(b.date || '').getTime() - new Date(a.date || '').getTime());
-  proposals = proposals.slice(0, 100);
+  //proposals = proposals.slice(0, 100);
   if (process.env.USE_FS_CACHE) fsCacheSet('proposals', JSON.stringify(proposals));
+  proposals.forEach(p => {
+    createMarkdownFile(p, proposalUrls2);
+  });
   return proposals;
 }
 
