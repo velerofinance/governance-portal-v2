@@ -51,6 +51,8 @@ export async function getExecutiveProposals(): Promise<CMSProposal[]> {
             return null;
           }
 
+          //remove if address is not a valid address
+
           //remove `Template - [Executive Vote] ` from title
           const editedTitle = title.replace('Template - [Executive Vote] ', '');
 
