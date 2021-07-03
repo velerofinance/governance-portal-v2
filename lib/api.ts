@@ -15,6 +15,7 @@ import { parsePollMetadata } from './polling/parser';
 import { fetchGitHubPage } from './github';
 import fs from 'fs';
 import { config } from './config';
+import { ethers } from 'ethers';
 
 export async function getExecutiveProposals(): Promise<CMSProposal[]> {
   if (config.USE_FS_CACHE) {
@@ -25,7 +26,7 @@ export async function getExecutiveProposals(): Promise<CMSProposal[]> {
 
   const proposalIndex = await (await fetch(EXEC_PROPOSAL_INDEX)).json();
 
-  const owner = 'makerdao';
+  const owner = 'tyler17'; //todo: switch back to makerdao before merging
   const repo = 'community';
   const path = 'governance/votes';
 
@@ -52,6 +53,12 @@ export async function getExecutiveProposals(): Promise<CMSProposal[]> {
           }
 
           //remove if address is not a valid address
+          try {
+            ethers.utils.getAddress(address);
+          } catch (_) {
+            console.log('invalid address: ', address, ' skipping executive: ', title);
+            return null;
+          }
 
           //remove `Template - [Executive Vote] ` from title
           const editedTitle = title.replace('Template - [Executive Vote] ', '');
