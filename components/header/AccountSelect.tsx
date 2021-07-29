@@ -23,6 +23,10 @@ import NetworkAlertModal from './NetworkAlertModal';
 import useAccountsStore from 'stores/accounts';
 import { AbstractConnector } from '@web3-react/abstract-connector';
 import ConnectWalletButton from 'components/web3/ConnectWalletButton';
+import { useContext } from 'react';
+import { NetworkContext } from 'lib/web3/context/NetworkContext';
+import { NetworkSelect } from './NetworkSelect';
+import { SupportedNetworks } from 'lib/constants';
 
 export type ChainIdError = null | 'network mismatch' | 'unsupported network';
 
@@ -58,27 +62,20 @@ const WrappedAccountSelect = (): JSX.Element => (
 );
 
 const AccountSelect = (): React.ReactElement => {
-  const { library, account: w3rAddress, activate, connector, error, chainId } = useWeb3React();
+  const { library, account: w3rAddress, activate, connector, chainId } = useWeb3React();
   const account = useAccountsStore(state => state.currentAccount);
   const address = account?.address;
 
   // Detect previously authorized connections and force log-in
   useEagerConnect();
-
-  const [chainIdError, setChainIdError] = useState<ChainIdError>(null);
+  const { network } = useContext(NetworkContext);
   const [disconnectAccount] = useAccountsStore(state => [state.disconnectAccount]);
-
-  useEffect(() => {
-    if (error instanceof UnsupportedChainIdError) setChainIdError('unsupported network');
-    if (chainId !== undefined && chainIdToNetworkName(chainId) !== getNetwork())
-      setChainIdError('network mismatch');
-  }, [chainId, error]);
 
   // FIXME there must be a more direct way to get web3-react & maker to talk to each other
   syncMakerAccount(
     library,
     w3rAddress,
-    chainId !== undefined && chainIdToNetworkName(chainId) !== getNetwork()
+    chainId !== undefined && chainIdToNetworkName(chainId) !== network
   );
 
   const [pending, txs] = useTransactionStore(state => [
@@ -238,8 +235,7 @@ const AccountSelect = (): React.ReactElement => {
   return (
     <Box sx={{ ml: ['auto', 3, 0] }}>
       <NetworkAlertModal
-        chainIdError={chainIdError}
-        walletChainName={chainId ? chainIdToNetworkName(chainId) : null}
+        chainIdError={chainId ? chainIdToNetworkName(chainId) === SupportedNetworks.UNSUPPORTED: false}
       />
 
       <ConnectWalletButton
@@ -249,6 +245,8 @@ const AccountSelect = (): React.ReactElement => {
         address={address}
         pending={pending}
       />
+      <NetworkSelect />
+      <Text>{network}</Text>
 
       <DialogOverlay isOpen={showDialog} onDismiss={close}>
         <DialogContent

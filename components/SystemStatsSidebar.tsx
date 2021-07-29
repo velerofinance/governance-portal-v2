@@ -5,10 +5,11 @@ import useSWR, { mutate } from 'swr';
 import Skeleton from 'react-loading-skeleton';
 
 import Stack from './layouts/Stack';
-import getMaker, { DAI, getNetwork } from 'lib/maker';
+import getMaker, { DAI } from 'lib/maker';
 import { bigNumberKFormat, formatAddress, getEtherscanLink } from 'lib/utils';
 import BigNumber from 'bignumber.js';
 import { CurrencyObject } from 'types/currency';
+import useNetworkStore from 'stores/network';
 
 async function getSystemStats(): Promise<
   [CurrencyObject, BigNumber, CurrencyObject, CurrencyObject, CurrencyObject]
@@ -42,6 +43,7 @@ type StatField =
   | 'system surplus';
 
 export default function SystemStatsSidebar({ fields = [], ...props }: { fields: StatField[] }): JSX.Element {
+  const { network } = useNetworkStore();
   const { data } = useSWR<[CurrencyObject, BigNumber, CurrencyObject, CurrencyObject, CurrencyObject]>(
     '/system-stats-sidebar',
     getSystemStats
@@ -61,7 +63,7 @@ export default function SystemStatsSidebar({ fields = [], ...props }: { fields: 
         <Text sx={{ fontSize: 3, color: 'textSecondary' }}>Chief Contract</Text>
         <Text variant="h2" sx={{ fontSize: 3 }}>
           {chiefAddress ? (
-            <ExternalLink href={getEtherscanLink(getNetwork(), chiefAddress, 'address')} target="_blank">
+            <ExternalLink href={getEtherscanLink(network, chiefAddress, 'address')} target="_blank">
               <Text>{formatAddress(chiefAddress)}</Text>
             </ExternalLink>
           ) : (
@@ -78,7 +80,7 @@ export default function SystemStatsSidebar({ fields = [], ...props }: { fields: 
         <Text sx={{ fontSize: 3, color: 'textSecondary' }}>Polling Contract</Text>
         <Text variant="h2" sx={{ fontSize: 3 }}>
           {pollingAddress ? (
-            <ExternalLink href={getEtherscanLink(getNetwork(), pollingAddress, 'address')} target="_blank">
+            <ExternalLink href={getEtherscanLink(network, pollingAddress, 'address')} target="_blank">
               <Text>{formatAddress(pollingAddress)}</Text>
             </ExternalLink>
           ) : (

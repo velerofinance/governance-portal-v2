@@ -5,7 +5,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Icon } from '@makerdao/dai-ui-icons';
 import { useBreakpointIndex } from '@theme-ui/match-media';
-import { getNetwork } from 'lib/maker';
 import PrimaryLayout from 'components/layouts/Primary';
 import SidebarLayout from 'components/layouts/Sidebar';
 import Stack from 'components/layouts/Stack';
@@ -20,6 +19,9 @@ import Hash from 'ipfs-only-hash';
 import useAccountsStore from 'stores/accounts';
 import { formatDateWithTime } from 'lib/utils';
 import { markdownToHtml } from 'lib/utils';
+import { useContext } from 'react';
+import { NetworkContext } from 'lib/web3/context/NetworkContext';
+import useNetworkStore from 'stores/network';
 
 const generateIPFSHash = async (data, options) => {
   // options object has the key encoding which defines the encoding type
@@ -52,6 +54,7 @@ const CreateText = ({ children }) => {
 };
 const PollingCreate = (): React.ReactElement => {
   const bpi = useBreakpointIndex();
+  const { network } = useNetworkStore();
   const [loading, setLoading] = useState(false);
   const [pollUrl, setPollUrl] = useState('');
   const [poll, setPoll] = useState<Poll | undefined>();
@@ -107,7 +110,7 @@ const PollingCreate = (): React.ReactElement => {
         <SidebarLayout>
           <Box>
             <Stack gap={2}>
-              <Link href={{ pathname: '/polling', query: { network: getNetwork() } }}>
+              <Link href={{ pathname: '/polling', query: { network } }}>
                 <Button variant="smallOutline" sx={{ width: 'max-content' }}>
                   <Icon name="chevron_left" size="2" mr={2} />
                   Back To All Polls

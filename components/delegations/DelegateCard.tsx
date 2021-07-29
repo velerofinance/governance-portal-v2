@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { Box, Flex, Button, Text, Link as ExternalLink, jsx } from 'theme-ui';
 import Link from 'next/link';
 import mixpanel from 'mixpanel-browser';
-import { getNetwork } from 'lib/maker';
 import { useLockedMkr, useMkrDelegated } from 'lib/hooks';
 import { limitString } from 'lib/string';
 import { getEtherscanLink } from 'lib/utils';
@@ -18,13 +17,14 @@ import {
   // DelegateLastVoted,
   DelegateContractExpiration
 } from 'components/delegations';
+import useNetworkStore from 'stores/network';
 
 type PropTypes = {
   delegate: Delegate;
 };
 
 export function DelegateCard({ delegate }: PropTypes): React.ReactElement {
-  const network = getNetwork();
+  const { network } = useNetworkStore();
   const [showDelegateModal, setShowDelegateModal] = useState(false);
   const [showUndelegateModal, setShowUndelegateModal] = useState(false);
   const [account, voteDelegate] = useAccountsStore(state => [state.currentAccount, state.voteDelegate]);
@@ -58,7 +58,7 @@ export function DelegateCard({ delegate }: PropTypes): React.ReactElement {
               </Box>
               <ExternalLink
                 title="View on etherescan"
-                href={getEtherscanLink(getNetwork(), delegate.voteDelegateAddress, 'address')}
+                href={getEtherscanLink(network, delegate.voteDelegateAddress, 'address')}
                 target="_blank"
               >
                 <Text>

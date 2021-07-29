@@ -24,41 +24,7 @@ function chainIdToNetworkName(chainId: number): SupportedNetworks {
     case 1337:
       return SupportedNetworks.TESTNET;
     default:
-      throw new Error(`Unsupported chain id ${chainId}`);
-  }
-}
-
-// make a snap judgement about which network to use so that we can immediately start loading state
-function determineNetwork(): SupportedNetworks {
-  if (typeof global.__TESTCHAIN__ !== 'undefined' && global.__TESTCHAIN__) {
-    // if the testhchain global is set, connect to the testchain
-    return SupportedNetworks.TESTNET;
-  } else if (typeof window === 'undefined') {
-    // if not on the browser, connect to the default network
-    // (eg when generating static pages at build-time)
-    return DEFAULT_NETWORK;
-  } else {
-    // otherwise, to determine the network...
-    // 1) check the URL
-    if (window.location.search.includes('mainnet')) {
-      return SupportedNetworks.MAINNET;
-    } else if (window.location.search.includes('kovan')) {
-      return SupportedNetworks.KOVAN;
-    } else if (window.location.search.includes('testnet')) {
-      return SupportedNetworks.TESTNET;
-    }
-    // 2) check the browser provider if there is one
-    if (typeof window.ethereum !== 'undefined') {
-      const chainId = parseInt(window.ethereum.chainId);
-      try {
-        const providerNetwork = chainIdToNetworkName(chainId);
-        return providerNetwork;
-      } catch (err) {
-        console.log(`Browser provider connected to unsupported network with id ${chainId}`);
-      }
-    }
-    // if it's not clear what network to connect to, use the default
-    return DEFAULT_NETWORK;
+      return SupportedNetworks.UNSUPPORTED;
   }
 }
 
@@ -105,23 +71,9 @@ function getMaker(network?: SupportedNetworks): Promise<Maker> {
   return makerSingletons[currentNetwork] as Promise<Maker>;
 }
 
-let networkSingleton: SupportedNetworks;
-
-function getNetwork(): SupportedNetworks {
-  if (!networkSingleton) networkSingleton = determineNetwork();
-  return networkSingleton;
-}
-
-function isDefaultNetwork(): boolean {
-  return getNetwork() === DEFAULT_NETWORK;
-}
 
 function isSupportedNetwork(_network: string): _network is SupportedNetworks {
   return Object.values(SupportedNetworks).some(network => network.toLowerCase() === _network);
-}
-
-function isTestnet(): boolean {
-  return getNetwork() === SupportedNetworks.TESTNET || !!config.TESTNET;
 }
 
 async function personalSign(message) {
@@ -146,10 +98,7 @@ async function personalSign(message) {
 export default getMaker;
 export {
   DAI,
-  getNetwork,
-  isDefaultNetwork,
   isSupportedNetwork,
   chainIdToNetworkName,
-  isTestnet,
   personalSign
 };

@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { useState, useMemo } from 'react';
-import useSWR from 'swr';
 import { Button, Flex, Close, Text, Box, Spinner, Link as ExternalLink, jsx } from 'theme-ui';
 import { Icon } from '@makerdao/dai-ui-icons';
 import shallow from 'zustand/shallow';
@@ -8,11 +7,12 @@ import { useBreakpointIndex } from '@theme-ui/match-media';
 import { DialogOverlay, DialogContent } from '@reach/dialog';
 
 import { fadeIn, slideUp } from 'lib/keyframes';
-import getMaker, { getNetwork } from 'lib/maker';
+import getMaker from 'lib/maker';
 import useTransactionStore, { transactionsApi, transactionsSelectors } from 'stores/transactions';
 import { getEtherscanLink } from 'lib/utils';
 import { TXMined } from 'types/transaction';
 import { Poll } from 'types/poll';
+import useNetworkStore from 'stores/network';
 
 type Props = {
   close: () => void;
@@ -20,11 +20,10 @@ type Props = {
   setPoll: (any) => void;
 };
 
-type ModalStep = 'confirm' | 'signing' | 'pending' | 'failed';
-
 const PollCreateModal = ({ close, poll, setPoll }: Props): JSX.Element => {
   const [txId, setTxId] = useState(null);
   const bpi = useBreakpointIndex();
+  const { network } = useNetworkStore();
 
   const [track, tx] = useTransactionStore(
     state => [state.track, txId ? transactionsSelectors.getTransaction(state, txId) : null],
@@ -104,7 +103,7 @@ const PollCreateModal = ({ close, poll, setPoll }: Props): JSX.Element => {
       case 'signing':
         return <Signing close={close} />;
       case 'pending':
-        return <Pending tx={tx} close={close} />;
+        return <Pending tx={tx} close={close} network={network} />;
       case 'failed':
         return <Error close={close} />;
     }
@@ -146,7 +145,8 @@ const Signing = ({ close }) => (
   </Flex>
 );
 
-const Pending = ({ tx, close }) => (
+const Pending = ({ tx, close, network }) => (
+  
   <Flex sx={{ flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
     <Close
       aria-label="close"
@@ -164,7 +164,7 @@ const Pending = ({ tx, close }) => (
       </Text>
       <ExternalLink
         target="_blank"
-        href={getEtherscanLink(getNetwork(), (tx as TXMined).hash, 'transaction')}
+        href={getEtherscanLink(network, (tx as TXMined).hash, 'transaction')}
         sx={{ p: 0 }}
       >
         <Text as="p" mt={3} px={4} sx={{ textAlign: 'center', fontSize: 14, color: 'accentBlue' }}>

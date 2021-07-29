@@ -2,14 +2,14 @@ import { Flex, Box, Badge, ThemeUIStyleObject } from 'theme-ui';
 import Skeleton from 'react-loading-skeleton';
 
 import { isActivePoll } from 'lib/utils';
-import { getNetwork } from 'lib/maker';
 import useSWR from 'swr';
 import { parsePollTally, fetchJson } from 'lib/utils';
 import { Poll } from 'types/poll';
+import useNetworkStore from 'stores/network';
 
 const PollOptionBadge = ({ poll, ...props }: { poll: Poll; sx?: ThemeUIStyleObject }): JSX.Element => {
   const hasPollEnded = !isActivePoll(poll);
-  const network = getNetwork();
+  const { network } = useNetworkStore();
   const { data: tally } = useSWR(
     hasPollEnded
       ? `/api/polling/tally/cache-no-revalidate/${poll.pollId}?network=${network}`

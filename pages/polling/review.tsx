@@ -9,7 +9,6 @@ import invariant from 'tiny-invariant';
 import shallow from 'zustand/shallow';
 
 import { useBreakpointIndex } from '@theme-ui/match-media';
-import { isDefaultNetwork, getNetwork } from 'lib/maker';
 import { getPolls } from 'lib/api';
 import { isActivePoll, findPollById } from 'lib/utils';
 import PrimaryLayout from 'components/layouts/Primary';
@@ -23,6 +22,8 @@ import useAccountsStore from 'stores/accounts';
 import MobileVoteSheet from 'components/polling/MobileVoteSheet';
 import mixpanel from 'mixpanel-browser';
 import PageLoadingPlaceholder from 'components/PageLoadingPlaceholder';
+import { useContext } from 'react';
+import { NetworkContext } from 'lib/web3/context/NetworkContext';
 
 const PollingReview = ({ polls }: { polls: Poll[] }) => {
   const bpi = useBreakpointIndex();
@@ -145,10 +146,11 @@ const cardStyles = (index, ballotLength) =>
 export default function PollingReviewPage({ polls: prefetchedPolls }: { polls: Poll[] }): JSX.Element {
   const [_polls, _setPolls] = useState<Poll[]>();
   const [error, setError] = useState<string>();
+  const { isDefaultNetwork } = useContext(NetworkContext);
 
   // fetch polls at run-time if on any network other than the default
   useEffect(() => {
-    if (!isDefaultNetwork()) {
+    if (!isDefaultNetwork) {
       getPolls().then(_setPolls).catch(setError);
     }
   }, []);
@@ -157,14 +159,14 @@ export default function PollingReviewPage({ polls: prefetchedPolls }: { polls: P
     return <ErrorPage statusCode={404} title="Error fetching proposals" />;
   }
 
-  if (!isDefaultNetwork() && !_polls)
+  if (!isDefaultNetwork && !_polls)
     return (
       <PrimaryLayout shortenFooter={true}>
         <PageLoadingPlaceholder />
       </PrimaryLayout>
     );
 
-  return <PollingReview polls={isDefaultNetwork() ? prefetchedPolls : (_polls as Poll[])} />;
+  return <PollingReview polls={isDefaultNetwork ? prefetchedPolls : (_polls as Poll[])} />;
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {

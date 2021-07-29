@@ -1,9 +1,9 @@
 import create from 'zustand';
 import getMaker from 'lib/maker';
 import oldVoteProxyFactoryAbi from 'lib/abis/oldVoteProxyFactoryAbi.json';
-import { getNetwork } from 'lib/maker';
 import { oldVoteProxyFactoryAddress } from 'lib/constants';
 import { Account } from 'types/account';
+import useNetworkStore from './network';
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 
@@ -34,10 +34,10 @@ type Store = {
   disconnectAccount: () => Promise<void>;
 };
 
-const getOldProxyStatus = async (address, maker) => {
+const getOldProxyStatus = async (address, maker, network) => {
   const oldFactory = maker
     .service('smartContract')
-    .getContractByAddressAndAbi(oldVoteProxyFactoryAddress[getNetwork()], oldVoteProxyFactoryAbi);
+    .getContractByAddressAndAbi(oldVoteProxyFactoryAddress[network], oldVoteProxyFactoryAbi);
   const [proxyAddressCold, proxyAddressHot] = await Promise.all([
     oldFactory.coldMap(address),
     oldFactory.hotMap(address)
@@ -62,9 +62,11 @@ const [useAccountsStore, accountsApi] = create<Store>((set, get) => ({
       }
 
       const { address } = account;
+      const network = useNetworkStore(state => state.network);
+
       const [{ hasProxy, voteProxy }, oldProxy] = await Promise.all([
         maker.service('voteProxy').getVoteProxy(address),
-        getOldProxyStatus(address, maker)
+        getOldProxyStatus(address, maker, network)
       ]);
 
       await get().setVoteDelegate(address);

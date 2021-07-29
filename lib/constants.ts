@@ -1,7 +1,8 @@
 export enum SupportedNetworks {
   MAINNET = 'mainnet',
   KOVAN = 'kovan',
-  TESTNET = 'testnet'
+  TESTNET = 'testnet',
+  UNSUPPORTED = 'unsupported'
 }
 
 export const CMS_ENDPOINTS = {
@@ -25,7 +26,7 @@ export const ETHERSCAN_PREFIXES = {
   [SupportedNetworks.KOVAN]: 'kovan.'
 };
 
-export const ETH_TX_STATE_DIFF_ENDPOINT = (network: SupportedNetworks.MAINNET | SupportedNetworks.KOVAN) =>
+export const ETH_TX_STATE_DIFF_ENDPOINT = (network: SupportedNetworks.MAINNET | SupportedNetworks.KOVAN): string =>
   `https://statediff.ethtx.info/api/decode/state-diffs/${network}`;
 
 export const ABSTAIN = 0;

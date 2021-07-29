@@ -1,11 +1,11 @@
 /** @jsx jsx */
 import { jsx, Box, Text, Link as ExternalLink, Divider, Flex } from 'theme-ui';
 import React from 'react';
-import { getNetwork } from 'lib/maker';
 import { getEtherscanLink } from 'lib/utils';
 import { Delegate } from 'types/delegate';
 import { DelegatePicture, DelegateContractExpiration, DelegateLastVoted } from 'components/delegations';
 import { Icon } from '@makerdao/dai-ui-icons';
+import useNetworkStore from 'stores/network';
 
 type PropTypes = {
   delegate: Delegate;
@@ -13,6 +13,7 @@ type PropTypes = {
 
 export function DelegateDetail({ delegate }: PropTypes): React.ReactElement {
   const { voteDelegateAddress } = delegate;
+  const { network } = useNetworkStore();
   return (
     <Box sx={{ variant: 'cards.primary', p: [0, 0] }}>
       <Box sx={{ display: 'flex', p: 3 }}>
@@ -24,7 +25,7 @@ export function DelegateDetail({ delegate }: PropTypes): React.ReactElement {
           </Text>
           <ExternalLink
             title="View on etherescan"
-            href={getEtherscanLink(getNetwork(), voteDelegateAddress, 'address')}
+            href={getEtherscanLink(network, voteDelegateAddress, 'address')}
             target="_blank"
           >
             <Text as="p">

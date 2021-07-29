@@ -1,8 +1,8 @@
 import { Button, Flex, Text, Link as ExternalLink } from 'theme-ui';
-import { getNetwork } from 'lib/maker';
 import { getEtherscanLink } from 'lib/utils';
 import { Delegate } from 'types/delegate';
 import BigNumber from 'bignumber.js';
+import useNetworkStore from 'stores/network';
 
 type Props = {
   mkrToDeposit: BigNumber;
@@ -13,6 +13,7 @@ type Props = {
 
 export const ConfirmContent = ({ mkrToDeposit, delegate, onClick, onBack }: Props): JSX.Element => {
   const { address, voteDelegateAddress } = delegate;
+  const { network } = useNetworkStore();
   return (
     <Flex sx={{ flexDirection: 'column', textAlign: 'center' }}>
       <Text variant="microHeading" sx={{ fontSize: [3, 6] }}>
@@ -24,7 +25,7 @@ export const ConfirmContent = ({ mkrToDeposit, delegate, onClick, onBack }: Prop
         contract{' '}
         <ExternalLink
           title="View on etherescan"
-          href={getEtherscanLink(getNetwork(), voteDelegateAddress, 'address')}
+          href={getEtherscanLink(network, voteDelegateAddress, 'address')}
           target="_blank"
         >
           <Text sx={{ fontWeight: 'bold', color: 'text', display: 'inline', ':hover': { color: 'inherit' } }}>
@@ -36,7 +37,7 @@ export const ConfirmContent = ({ mkrToDeposit, delegate, onClick, onBack }: Prop
         This delegate contract was created by{' '}
         <ExternalLink
           title="View on etherescan"
-          href={getEtherscanLink(getNetwork(), address, 'address')}
+          href={getEtherscanLink(network, address, 'address')}
           target="_blank"
         >
           <Text sx={{ fontWeight: 'bold', color: 'text', display: 'inline', ':hover': { color: 'inherit' } }}>

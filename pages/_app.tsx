@@ -20,6 +20,7 @@ import { useEffect } from 'react';
 import mixpanel from 'mixpanel-browser';
 import { config } from '../lib/config';
 import { useAccountChange } from 'lib/web3/hooks/useAccountChange';
+import { NetworkProvider } from 'lib/web3/context/NetworkContext';
 
 export const reportWebVitals = vitalslog;
 
@@ -63,31 +64,34 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
           content="MakerDAO stakeholders use the Voting Portal to vote on the blockchain. Voting occurs frequently, requiring an active, well-informed governance community."
         />
       </Head>
-      <SWRConfig
-        value={{
-          refreshInterval: 5000,
-          fetcher: url => fetchJson(url)
-        }}
-      >
-        <Global
-          styles={{
-            '*': {
-              WebkitFontSmoothing: 'antialiased',
-              MozOsxFontSmoothing: 'grayscale'
-            }
-          }}
-        />
-        <Flex
-          sx={{
-            flexDirection: 'column',
-            variant: 'layout.root',
-            px: [3, 4]
+      <NetworkProvider>
+        <SWRConfig
+          value={{
+            refreshInterval: 5000,
+            fetcher: url => fetchJson(url)
           }}
         >
-          <Header />
-          <Component {...pageProps} />
-        </Flex>
-      </SWRConfig>
+
+          <Global
+            styles={{
+              '*': {
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale'
+              }
+            }}
+            />
+          <Flex
+            sx={{
+              flexDirection: 'column',
+              variant: 'layout.root',
+              px: [3, 4]
+            }}
+            >
+            <Header />
+            <Component {...pageProps} />
+          </Flex>
+        </SWRConfig>
+      </NetworkProvider>
     </ThemeProvider>
   );
 };
