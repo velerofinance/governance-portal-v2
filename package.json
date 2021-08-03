@@ -13,7 +13,8 @@
     "test:ci": "yarn testchain --ci jest --runInBand --ci --coverage",
     "testchain": "node_modules/@makerdao/testchain/scripts/launch -s default --fast",
     "prettier": "prettier --config .prettierrc --write pages/ components/ lib/ stores/ types/",
-    "lint": "eslint --ext .tsx,.ts pages/ components/ lib/ stores/ types/"
+    "lint": "eslint --ext .tsx,.ts pages/ components/ lib/ stores/ types/",
+    "hardhat:node": "hardhat node"
   },
   "dependencies": {
     "@makerdao/dai": "^0.32.11",
@@ -82,6 +83,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.20.5",
     "eslint-plugin-testing-library": "^4.10.1",
+    "hardhat": "^2.5.0",
     "husky": "^6.0.0",
     "jest": "^26.0.1",
     "prettier": "^2.0.5",

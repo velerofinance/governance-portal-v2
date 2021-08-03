@@ -22,7 +22,9 @@ function chainIdToNetworkName(chainId: number): SupportedNetworks {
     case 999:
       return SupportedNetworks.TESTNET;
     case 1337:
-      return SupportedNetworks.TESTNET;
+      // metamask recognizes localhost:8545 at chain id 1337
+      // return SupportedNetworks.TESTNET;
+      return SupportedNetworks.HARDHAT;
     default:
       throw new Error(`Unsupported chain id ${chainId}`);
   }
@@ -30,6 +32,7 @@ function chainIdToNetworkName(chainId: number): SupportedNetworks {
 
 // make a snap judgement about which network to use so that we can immediately start loading state
 function determineNetwork(): SupportedNetworks {
+  console.log('determining');
   if (typeof global.__TESTCHAIN__ !== 'undefined' && global.__TESTCHAIN__) {
     // if the testhchain global is set, connect to the testchain
     return SupportedNetworks.TESTNET;
@@ -46,6 +49,8 @@ function determineNetwork(): SupportedNetworks {
       return SupportedNetworks.KOVAN;
     } else if (window.location.search.includes('testnet')) {
       return SupportedNetworks.TESTNET;
+    } else if (window.location.search.includes('hardhat')) {
+      return SupportedNetworks.HARDHAT;
     }
     // 2) check the browser provider if there is one
     if (typeof window.ethereum !== 'undefined') {
@@ -66,12 +71,14 @@ type MakerSingletons = {
   [SupportedNetworks.MAINNET]: null | Promise<Maker>;
   [SupportedNetworks.KOVAN]: null | Promise<Maker>;
   [SupportedNetworks.TESTNET]: null | Promise<Maker>;
+  [SupportedNetworks.HARDHAT]: null | Promise<Maker>;
 };
 
 const makerSingletons: MakerSingletons = {
   [SupportedNetworks.MAINNET]: null,
   [SupportedNetworks.KOVAN]: null,
-  [SupportedNetworks.TESTNET]: null
+  [SupportedNetworks.TESTNET]: null,
+  [SupportedNetworks.HARDHAT]: null
 };
 
 function getMaker(network?: SupportedNetworks): Promise<Maker> {
@@ -82,7 +89,14 @@ function getMaker(network?: SupportedNetworks): Promise<Maker> {
     makerSingletons[currentNetwork] = Maker.create('http', {
       plugins: [
         [McdPlugin, { prefetch: false }],
-        [GovernancePlugin, { network: currentNetwork, staging: !config.USE_PROD_SPOCK }],
+        [
+          GovernancePlugin,
+          {
+            // dai.js doesn't expect hardhat
+            network: currentNetwork === SupportedNetworks.HARDHAT ? SupportedNetworks.KOVAN : currentNetwork,
+            staging: !config.USE_PROD_SPOCK
+          }
+        ],
         Web3ReactPlugin,
         LedgerPlugin,
         TrezorPlugin

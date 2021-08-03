@@ -1,7 +1,8 @@
 export enum SupportedNetworks {
   MAINNET = 'mainnet',
   KOVAN = 'kovan',
-  TESTNET = 'testnet'
+  TESTNET = 'testnet',
+  HARDHAT = 'hardhat'
 }
 
 export const CMS_ENDPOINTS = {

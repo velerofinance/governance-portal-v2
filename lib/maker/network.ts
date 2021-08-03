@@ -15,6 +15,8 @@ export function networkToRpc(network: SupportedNetworks, nodeProvider?: 'infura'
       return `https://kovan.infura.io/v3/${config.INFURA_KEY}`;
     case SupportedNetworks.TESTNET:
       return 'http://localhost:2000';
+    case SupportedNetworks.HARDHAT:
+      return 'http://localhost:8545';
     default:
       if (nodeProvider === 'alchemy') {
         return `https://eth-mainnet.alchemyapi.io/v2/${config.ALCHEMY_KEY}`;
