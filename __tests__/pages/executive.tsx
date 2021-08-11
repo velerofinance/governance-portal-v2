@@ -37,10 +37,6 @@ describe('Executive page', () => {
   beforeAll(async () => {
     jest.setTimeout(30000);
     configure({ asyncUtilTimeout: 4500 });
-
-    maker = await getMaker();
-    await createDelegate(maker);
-
   });
 
   beforeEach(async () => {
@@ -106,17 +102,40 @@ describe('Executive page', () => {
     await waitForElementToBeRemoved(dialog);
   });
 
-  test('shows delegated balance if account is a delegate', async () => {
-    accountsApi.getState().addAccountsListener();
+  
 
-    // set delegate in state
-    accountsApi.getState().setVoteDelegate(accountsApi.getState().currentAccount?.address || '');
+  describe('Executives as a delegate', () => {
 
-    await screen.findByText(/In delegate contract:/i);
+    beforeAll(async () => {
+      maker = await getMaker();
+      await createDelegate(maker);
+    });
+    
+    test('shows delegated balance if account is a delegate', async () => {
+      accountsApi.getState().addAccountsListener();
+  
+      // set delegate in state
+      accountsApi.getState().setVoteDelegate(accountsApi.getState().currentAccount?.address || '');
+  
+      await screen.findByText(/In delegate contract:/i);
+  
+      // switch to non-delegate account
+      await switchAccount(maker);
+  
+      await screen.findByText(/In voting contract:/i);
+    });
 
-    // switch to non-delegate account
-    await switchAccount(maker);
+    test('Should be able to vote as a delegate', async() => {
+      accountsApi.getState().addAccountsListener();
+  
+      // set delegate in state
+      accountsApi.getState().setVoteDelegate(accountsApi.getState().currentAccount?.address || '');
+  
+      await screen.findByText(/In delegate contract:/i);
 
-    await screen.findByText(/In voting contract:/i);
+      // Delegate to itself
+      maker.service('voteDelegate').lock(accountsApi.getState().voteDelegate.address, 1);
+    });
+  
   });
 });

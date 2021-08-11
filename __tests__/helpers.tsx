@@ -99,6 +99,8 @@ export async function createDelegate(maker, account = DEMO_ACCOUNT_TESTS) {
   return await maker.service('voteDelegateFactory').createDelegateContract();
 }
 
+
+
 // Convenience function to add a new account maker & browser provider
 export async function switchAccount(maker, account = null) {
   const accountToUse = account ?? TestAccountProvider.nextAccount();
