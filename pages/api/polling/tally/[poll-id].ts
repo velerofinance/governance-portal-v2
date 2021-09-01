@@ -16,7 +16,9 @@ function createPollTallyRoute({ cacheType }: { cacheType: string }) {
     invariant(isSupportedNetwork(network), `unsupported network ${network}`);
 
     const maker = await getConnectedMakerObj(network);
-    const tally = await backoffRetry(3, () => maker.service('govPolling').buggyGetTallyRankedChoiceIrv(pollId));
+    const tally = await backoffRetry(3, () =>
+      maker.service('govPolling').buggyGetTallyRankedChoiceIrv(pollId)
+    );
 
     const totalMkrParticipation = tally.totalMkrParticipation;
     const winner: string = tally.winner;
