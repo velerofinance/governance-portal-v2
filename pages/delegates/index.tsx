@@ -15,7 +15,7 @@ import Stack from 'components/layouts/Stack';
 import ResourceBox from 'components/ResourceBox';
 import { DelegateCard } from 'modules/delegates/components';
 import PageLoadingPlaceholder from 'components/PageLoadingPlaceholder';
-import { getNetwork } from 'lib/maker';
+import getMaker, { getNetwork } from 'lib/maker';
 import { fetchJson } from 'lib/utils';
 import { useAnalytics } from 'lib/client/analytics/useAnalytics';
 import { ANALYTICS_PAGES } from 'lib/client/analytics/analytics.constants';
@@ -30,6 +30,27 @@ type Props = {
 
 const Delegates = ({ delegates, stats }: Props) => {
   const network = getNetwork();
+  const [mkrStakedForAccount, setMkrStakedForAccount] = useState<any>(null);
+  const account = useAccountsStore(state => state.currentAccount);
+  const [voteDelegate] = useAccountsStore(state => [state.voteDelegate]);
+
+  const fetchUserDelegates = async () => {
+    const maker = await getMaker(network);
+    const mkrStakedForAccount = await Promise.all(
+      delegates.map(async delegate => {
+        const balance = await maker
+          .service('voteDelegate')
+          .getStakedBalanceForAddress(delegate.voteDelegateAddress, account?.address);
+        return balance;
+      })
+    );
+
+    setMkrStakedForAccount(mkrStakedForAccount);
+  };
+
+  useEffect(() => {
+    if (delegates && delegates.length > 0 && account) fetchUserDelegates();
+  }, [delegates, account]);
 
   const { trackButtonClick } = useAnalytics(ANALYTICS_PAGES.DELEGATES);
 
@@ -38,10 +59,13 @@ const Delegates = ({ delegates, stats }: Props) => {
       marginBottom: 2
     }
   };
-  const [voteDelegate] = useAccountsStore(state => [state.voteDelegate]);
 
   const isOwner = d =>
     d.voteDelegateAddress.toLowerCase() === voteDelegate?.getVoteDelegateAddress().toLowerCase();
+
+  const yourDelegates = delegates.filter(
+    (delegate, i) => mkrStakedForAccount && mkrStakedForAccount[i].toBigNumber().gt(0)
+  );
 
   const expiredDelegates = delegates.filter(delegate => delegate.expired === true);
 
@@ -62,6 +86,23 @@ const Delegates = ({ delegates, stats }: Props) => {
       <SidebarLayout>
         <Box>
           {delegates && delegates.length === 0 && <Text>No delegates found</Text>}
+
+          {yourDelegates.length > 0 && (
+            <Box sx={styles.delegateGroup}>
+              <Heading mb={3} mt={3} as="h4">
+                {`Your Delegate${yourDelegates.length > 1 ? 's' : ''}`}
+              </Heading>
+
+              <Box>
+                {yourDelegates.map(delegate => (
+                  <Box key={delegate.id} sx={{ mb: 4 }}>
+                    <DelegateCard delegate={delegate} />
+                  </Box>
+                ))}
+              </Box>
+            </Box>
+          )}
+
           {recognizedDelegates.length > 0 && (
             <Box sx={styles.delegateGroup}>
               <Heading mb={3} mt={3} as="h4">
