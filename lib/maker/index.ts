@@ -82,7 +82,7 @@ async function getMaker(network?: SupportedNetworks): Promise<Maker> {
     const instance = Maker.create('http', {
       plugins: [
         [McdPlugin, { prefetch: false }],
-        [GovernancePlugin, { network: currentNetwork, staging: !config.USE_PROD_SPOCK }],
+        [GovernancePlugin, { network: currentNetwork }],
         Web3ReactPlugin,
         LedgerPlugin,
         TrezorPlugin
