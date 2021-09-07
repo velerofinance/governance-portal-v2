@@ -20,7 +20,7 @@ function createPollTallyRoute({ cacheType }: { cacheType: string }) {
 
     const maker = await getMaker(network);
     const votesByAddress: PollTallyVote[] = (
-      await maker.service('govPolling').getMkrAmtVotedByAddress(pollId)
+      await maker.service('govPolling').buggyGetMkrAmtVotedByAddress(pollId)
     ).sort((a, b) => (new BigNumber(a.mkrSupport).lt(new BigNumber(b.mkrSupport)) ? 1 : -1));
 
     const totalMkrParticipation = tally.totalMkrParticipation;
