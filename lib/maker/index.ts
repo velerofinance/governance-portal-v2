@@ -123,23 +123,11 @@ function isTestnet(): boolean {
   return getNetwork() === SupportedNetworks.TESTNET || !!config.TESTNET;
 }
 
-async function personalSign(message) {
+async function personalSign(message: string): Promise<string> {
   const maker = await getMaker();
-  const provider = maker.service('web3')._web3.currentProvider;
   const from = maker.currentAddress();
-  return new Promise((resolve, reject) => {
-    provider.sendAsync(
-      {
-        method: 'personal_sign',
-        params: [message, from],
-        from
-      },
-      (err, res) => {
-        if (err) reject(err);
-        resolve(res.result);
-      }
-    );
-  });
+  //seems like ethers v3 doesn't has a way to sign, so using web3
+  return maker.service('web3')._web3.eth.personal.sign(message, from);
 }
 
 export default getMaker;
