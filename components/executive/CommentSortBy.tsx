@@ -37,13 +37,13 @@ export default function CommentSortBy(props): JSX.Element {
         Oldest
       </MenuItem>
       <MenuItem
-        onSelect={() => setCommentSortBy('MKR Amount')}
+        onSelect={() => setCommentSortBy('VDGT Amount')}
         sx={{
           variant: 'menubuttons.default.item',
-          fontWeight: commentSortBy === 'MKR Amount' ? 'bold' : undefined
+          fontWeight: commentSortBy === 'VDGT Amount' ? 'bold' : undefined
         }}
       >
-        MKR Amount
+        VDGT Amount
       </MenuItem>
     </FilterButton>
   );

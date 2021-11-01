@@ -12,7 +12,7 @@ export default function ResourceBox({ className }: { className?: string }): JSX.
         <Flex sx={{ alignItems: 'center' }}>
           <ExternalLink href="https://forum.makerdao.com" target="_blank">
             <Text sx={{ color: 'accentBlue', fontSize: [2, 3], ':hover': { color: 'blueLinkHover' } }}>
-              Maker Forum
+              Velero Forum
               <Icon ml={2} name="arrowTopRight" size={2} />
             </Text>
           </ExternalLink>
@@ -36,7 +36,7 @@ export default function ResourceBox({ className }: { className?: string }): JSX.
         <Flex sx={{ alignItems: 'center', pt: 3 }}>
           <ExternalLink href="https://github.com/makerdao/awesome-makerdao" target="_blank">
             <Text sx={{ color: 'accentBlue', fontSize: [2, 3], ':hover': { color: 'blueLinkHover' } }}>
-              Awesome MakerDAO
+              Awesome VELERO
               <Icon ml={2} name="arrowTopRight" size={2} />
             </Text>
           </ExternalLink>
@@ -57,7 +57,7 @@ export default function ResourceBox({ className }: { className?: string }): JSX.
             target="_blank"
           >
             <Text sx={{ color: 'accentBlue', fontSize: [2, 3], ':hover': { color: 'blueLinkHover' } }}>
-              MakerDAO Events Calendar
+              VELERO Events Calendar
               <Icon ml={2} name="arrowTopRight" size={2} />
             </Text>
           </ExternalLink>

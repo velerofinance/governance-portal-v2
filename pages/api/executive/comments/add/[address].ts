@@ -6,6 +6,7 @@ import { connectToDatabase } from 'lib/api/utils';
 import withApiHandler from 'lib/api/withApiHandler';
 import { config } from 'lib/config';
 import { SupportedNetworks } from 'lib/constants';
+import { networkToRpc } from '../../../../../lib/maker/network';
 
 export default withApiHandler(
   async (req: NextApiRequest, res: NextApiResponse) => {
@@ -16,14 +17,11 @@ export default withApiHandler(
 
     // only store comments for mainnet votes
     invariant(
-      !req.query.network || req.query.network === SupportedNetworks.MAINNET,
+      !req.query.network || req.query.network === SupportedNetworks.VELAS,
       `unsupported network ${req.query.network}`
     );
 
-    const provider = ethers.getDefaultProvider(SupportedNetworks.MAINNET, {
-      infura: config.INFURA_KEY,
-      alchemy: config.ALCHEMY_KEY
-    });
+    const provider = ethers.getDefaultProvider(networkToRpc(SupportedNetworks.VELAS));
 
     // verify tx
     const { from } = await provider.getTransaction(txHash);

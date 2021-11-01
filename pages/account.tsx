@@ -77,7 +77,7 @@ const AccountPage = (): JSX.Element => {
   return (
     <PrimaryLayout shortenFooter={true} sx={{ maxWidth: [null, null, null, 'page', 'dashboard'] }}>
       <Head>
-        <title>Maker Governance - Account</title>
+        <title>Velero Governance - Account</title>
       </Head>
 
       <SidebarLayout>
@@ -111,7 +111,7 @@ const AccountPage = (): JSX.Element => {
                   {delegatedMkr && (
                     <>
                       <Text as="p" sx={{ mt: 3 }}>
-                        Delegated MKR:
+                        Delegated VDGT:
                       </Text>
                       <Text>{delegatedMkr.toBigNumber().toFormat(6)}</Text>
                     </>
@@ -187,11 +187,11 @@ const AccountPage = (): JSX.Element => {
                 <Flex sx={{ alignItems: 'flex-start', flexDirection: 'column', mt: 5 }}>
                   <Text as="p">
                     You have a DSChief balance of{' '}
-                    <Text sx={{ fontWeight: 'bold' }}>{chiefBalance.toBigNumber().toFormat(6)} MKR.</Text>
+                    <Text sx={{ fontWeight: 'bold' }}>{chiefBalance.toBigNumber().toFormat(6)} VDGT.</Text>
                     <Text as="p" sx={{ my: 2 }}>
                       {voteDelegate
-                        ? 'As a delegate you can only vote with your delegate contract through the portal. You can withdraw your MKR and delegate it to yourself to vote with it.'
-                        : 'If you become a delegate, you will only be able to vote through the portal as a delegate. In this case, it is recommended to withdraw your MKR and delegate it to yourself or create the delegate contract from a different account.'}
+                        ? 'As a delegate you can only vote with your delegate contract through the portal. You can withdraw your VDGT and delegate it to yourself to vote with it.'
+                        : 'If you become a delegate, you will only be able to vote through the portal as a delegate. In this case, it is recommended to withdraw your VDGT and delegate it to yourself or create the delegate contract from a different account.'}
                     </Text>
                   </Text>
                   <Withdraw sx={{ mt: 3 }} />
@@ -204,7 +204,7 @@ const AccountPage = (): JSX.Element => {
           <SystemStatsSidebar
             fields={['polling contract', 'savings rate', 'total dai', 'debt ceiling', 'system surplus']}
           />
-          <ResourceBox />
+          {/*<ResourceBox />*/}
         </Stack>
       </SidebarLayout>
     </PrimaryLayout>

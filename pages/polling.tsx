@@ -133,7 +133,7 @@ const PollingOverview = ({ polls, categories }: Props) => {
   return (
     <PrimaryLayout shortenFooter={true} sx={{ maxWidth: [null, null, null, 'page', 'dashboard'] }}>
       <Head>
-        <title>Maker Governance - Polling</title>
+        <title>Velero Governance - Polling</title>
       </Head>
       {mobileVotingPoll && (
         <MobileVoteSheet
@@ -272,7 +272,7 @@ const PollingOverview = ({ polls, categories }: Props) => {
             <SystemStatsSidebar
               fields={['polling contract', 'savings rate', 'total dai', 'debt ceiling', 'system surplus']}
             />
-            <ResourceBox />
+            {/*<ResourceBox />*/}
           </Stack>
         </SidebarLayout>
       </Stack>

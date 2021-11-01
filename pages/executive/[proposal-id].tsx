@@ -219,7 +219,7 @@ const ProposalView = ({ proposal }: Props): JSX.Element => {
               />
               <StatBox
                 value={spellData && new BigNumber(spellData.mkrSupport).toFormat(2)}
-                label="MKR Support"
+                label="VDGT Support"
               />
               <StatBox value={supporters && supporters.length} label="Supporters" />
             </Flex>
@@ -307,7 +307,7 @@ const ProposalView = ({ proposal }: Props): JSX.Element => {
                     >
                       <Box sx={{ width: '55%' }}>
                         <Text color="onSecondary">
-                          {supporter.percent}% ({new BigNumber(supporter.deposits).toFormat(2)} MKR)
+                          {supporter.percent}% ({new BigNumber(supporter.deposits).toFormat(2)} VDGT)
                         </Text>
                       </Box>
 
@@ -372,7 +372,7 @@ const ProposalView = ({ proposal }: Props): JSX.Element => {
               </Box>
             </Card>
           </Box>
-          <ResourceBox />
+          {/*<ResourceBox />*/}
         </Stack>
       </SidebarLayout>
     </PrimaryLayout>

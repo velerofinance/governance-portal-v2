@@ -45,13 +45,13 @@ export const UndelegateModal = ({ isOpen, onDismiss, delegate }: Props): JSX.Ele
   const approveIou = async () => {
     const maker = await getMaker();
     const approveTxCreator = () => maker.getToken('IOU').approveUnlimited(voteDelegateAddress);
-    const txId = await trackTransaction(approveTxCreator, 'Approving MKR', {
+    const txId = await trackTransaction(approveTxCreator, 'Approving VDGT', {
       mined: txId => {
-        transactionsApi.getState().setMessage(txId, 'MKR approved');
+        transactionsApi.getState().setMessage(txId, 'VDGT approved');
         setTxId(null);
       },
       error: () => {
-        transactionsApi.getState().setMessage(txId, 'MKR approval failed');
+        transactionsApi.getState().setMessage(txId, 'VDGT approval failed');
         setTxId(null);
       }
     });
@@ -61,12 +61,12 @@ export const UndelegateModal = ({ isOpen, onDismiss, delegate }: Props): JSX.Ele
   const freeMkr = async () => {
     const maker = await getMaker();
     const freeTxCreator = () => maker.service('voteDelegate').free(voteDelegateAddress, mkrToWithdraw);
-    const txId = await trackTransaction(freeTxCreator, 'Withdrawing MKR', {
+    const txId = await trackTransaction(freeTxCreator, 'Withdrawing VDGT', {
       mined: txId => {
-        transactionsApi.getState().setMessage(txId, 'MKR withdrawn');
+        transactionsApi.getState().setMessage(txId, 'VDGT withdrawn');
       },
       error: () => {
-        transactionsApi.getState().setMessage(txId, 'MKR withdrawal failed');
+        transactionsApi.getState().setMessage(txId, 'VDGT withdrawal failed');
       }
     });
     setTxId(txId);
@@ -109,10 +109,10 @@ export const UndelegateModal = ({ isOpen, onDismiss, delegate }: Props): JSX.Ele
                     {mkrStaked && hasLargeIouAllowance ? (
                       <InputDelegateMkr
                         title="Withdraw from delegate contract"
-                        description="Input the amount of MKR to withdraw from the delegate contract."
+                        description="Input the amount of VDGT to withdraw from the delegate contract."
                         onChange={setMkrToWithdraw}
                         balance={mkrStaked.toBigNumber()}
-                        buttonLabel="Undelegate MKR"
+                        buttonLabel="Undelegate VDGT"
                         onClick={freeMkr}
                         showAlert={false}
                       />
@@ -122,7 +122,7 @@ export const UndelegateModal = ({ isOpen, onDismiss, delegate }: Props): JSX.Ele
                         title={'Approve Delegate Contract'}
                         buttonLabel={'Approve Delegate Contract'}
                         description={
-                          'Approve the transfer of IOU tokens to the delegate contract to wtihdraw your MKR.'
+                          'Approve the transfer of IOU tokens to the delegate contract to wtihdraw your VDGT.'
                         }
                       />
                     )}

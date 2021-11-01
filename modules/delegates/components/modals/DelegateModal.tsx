@@ -39,7 +39,7 @@ export const DelegateModal = ({ isOpen, onDismiss, delegate }: Props): JSX.Eleme
 
   const { data: mkrAllowance } = useTokenAllowance(MKR, address, voteDelegateAddress);
 
-  const hasLargeMkrAllowance = mkrAllowance?.gt('10e26'); // greater than 100,000,000 MKR
+  const hasLargeMkrAllowance = mkrAllowance?.gt('10e26'); // greater than 100,000,000 VDGT
 
   const [trackTransaction, tx] = useTransactionStore(
     state => [state.track, txId ? transactionsSelectors.getTransaction(state, txId) : null],
@@ -49,13 +49,13 @@ export const DelegateModal = ({ isOpen, onDismiss, delegate }: Props): JSX.Eleme
   const approveMkr = async () => {
     const maker = await getMaker();
     const approveTxCreator = () => maker.getToken(MKR).approveUnlimited(voteDelegateAddress);
-    const txId = await trackTransaction(approveTxCreator, 'Approving MKR', {
+    const txId = await trackTransaction(approveTxCreator, 'Approving VDGT', {
       mined: txId => {
-        transactionsApi.getState().setMessage(txId, 'MKR approved');
+        transactionsApi.getState().setMessage(txId, 'VDGT approved');
         setTxId(null);
       },
       error: () => {
-        transactionsApi.getState().setMessage(txId, 'MKR approval failed');
+        transactionsApi.getState().setMessage(txId, 'VDGT approval failed');
         setTxId(null);
       }
     });
@@ -66,12 +66,12 @@ export const DelegateModal = ({ isOpen, onDismiss, delegate }: Props): JSX.Eleme
     const maker = await getMaker();
 
     const lockTxCreator = () => maker.service('voteDelegate').lock(voteDelegateAddress, mkrToDeposit);
-    const txId = await trackTransaction(lockTxCreator, 'Depositing MKR', {
+    const txId = await trackTransaction(lockTxCreator, 'Depositing VDGT', {
       mined: txId => {
-        transactionsApi.getState().setMessage(txId, 'MKR deposited');
+        transactionsApi.getState().setMessage(txId, 'VDGT deposited');
       },
       error: () => {
-        transactionsApi.getState().setMessage(txId, 'MKR deposit failed');
+        transactionsApi.getState().setMessage(txId, 'VDGT deposit failed');
       }
     });
     setTxId(txId);
@@ -127,10 +127,10 @@ export const DelegateModal = ({ isOpen, onDismiss, delegate }: Props): JSX.Eleme
                       ) : (
                         <InputDelegateMkr
                           title="Deposit into delegate contract"
-                          description="Input the amount of MKR to deposit into the delegate contract."
+                          description="Input the amount of VDGT to deposit into the delegate contract."
                           onChange={setMkrToDeposit}
                           balance={mkrBalance?.toBigNumber()}
-                          buttonLabel="Delegate MKR"
+                          buttonLabel="Delegate VDGT"
                           onClick={() => setConfirmStep(true)}
                           showAlert={true}
                         />
@@ -141,7 +141,7 @@ export const DelegateModal = ({ isOpen, onDismiss, delegate }: Props): JSX.Eleme
                         title={'Approve Delegate Contract'}
                         buttonLabel={'Approve Delegate Contract'}
                         description={
-                          'Approve the transfer of MKR tokens to the delegate contract to deposit your MKR.'
+                          'Approve the transfer of VDGT tokens to the delegate contract to deposit your VDGT.'
                         }
                       />
                     )}

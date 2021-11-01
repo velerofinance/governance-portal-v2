@@ -17,7 +17,7 @@ export const ExecutiveBalance = ({ lockedMkr, voteDelegate, voteProxy }: Props) 
       </Text>
       {lockedMkr ? (
         <Text sx={{ fontWeight: 'bold' }} data-testid="locked-mkr">
-          {lockedMkr.toBigNumber().toFormat(6)} MKR
+          {lockedMkr.toBigNumber().toFormat(6)} VDGT
         </Text>
       ) : (
         <Box sx={{ width: 6 }}>

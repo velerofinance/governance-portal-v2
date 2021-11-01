@@ -1,10 +1,10 @@
 import create from 'zustand';
 import getMaker from 'lib/maker';
-import oldVoteProxyFactoryAbi from 'lib/abis/oldVoteProxyFactoryAbi.json';
-import { getNetwork } from 'lib/maker';
-import { oldVoteProxyFactoryAddress } from 'lib/constants';
+// import oldVoteProxyFactoryAbi from 'lib/abis/oldVoteProxyFactoryAbi.json';
+// import { getNetwork } from 'lib/maker';
+// import { oldVoteProxyFactoryAddress } from 'lib/constants';
 import { Account } from 'types/account';
-import { OldVoteProxyContract, VoteProxyContract } from 'types/voteProxyContract';
+import { VoteProxyContract } from 'types/voteProxyContract';
 import { VoteDelegateContract } from 'types/voteDelegateContract';
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
@@ -12,25 +12,25 @@ export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 type Store = {
   currentAccount?: Account;
   proxies: Record<string, VoteProxyContract | null>;
-  oldProxy: OldVoteProxyContract;
+  // oldProxy: OldVoteProxyContract;
   voteDelegate?: VoteDelegateContract;
   setVoteDelegate: (address: string) => Promise<void>;
   addAccountsListener: (maker) => Promise<void>;
   disconnectAccount: () => Promise<void>;
 };
 
-const getOldProxyStatus = async (address, maker) => {
-  const oldFactory = maker
-    .service('smartContract')
-    .getContractByAddressAndAbi(oldVoteProxyFactoryAddress[getNetwork()], oldVoteProxyFactoryAbi);
-  const [proxyAddressCold, proxyAddressHot] = await Promise.all([
-    oldFactory.coldMap(address),
-    oldFactory.hotMap(address)
-  ]);
-  if (proxyAddressCold !== ZERO_ADDRESS) return { role: 'cold', address: proxyAddressCold };
-  if (proxyAddressHot !== ZERO_ADDRESS) return { role: 'hot', address: proxyAddressHot };
-  return { role: '', address: '' };
-};
+// const getOldProxyStatus = async (address, maker) => {
+//   const oldFactory = maker
+//     .service('smartContract')
+//     .getContractByAddressAndAbi(oldVoteProxyFactoryAddress[getNetwork()], oldVoteProxyFactoryAbi);
+//   const [proxyAddressCold, proxyAddressHot] = await Promise.all([
+//     oldFactory.coldMap(address),
+//     oldFactory.hotMap(address)
+//   ]);
+//   if (proxyAddressCold !== ZERO_ADDRESS) return { role: 'cold', address: proxyAddressCold };
+//   if (proxyAddressHot !== ZERO_ADDRESS) return { role: 'hot', address: proxyAddressHot };
+//   return { role: '', address: '' };
+// };
 
 const [useAccountsStore, accountsApi] = create<Store>((set, get) => ({
   currentAccount: undefined,
@@ -46,9 +46,9 @@ const [useAccountsStore, accountsApi] = create<Store>((set, get) => ({
       }
 
       const { address } = account;
-      const [{ hasProxy, voteProxy }, oldProxy] = await Promise.all([
+      const [{ hasProxy, voteProxy }] = await Promise.all([
         maker.service('voteProxy').getVoteProxy(address),
-        getOldProxyStatus(address, maker)
+        // getOldProxyStatus(address, maker)
       ]);
 
       await get().setVoteDelegate(address);
@@ -56,7 +56,7 @@ const [useAccountsStore, accountsApi] = create<Store>((set, get) => ({
       set({
         currentAccount: account,
         proxies: { ...get().proxies, [address]: hasProxy ? voteProxy : null },
-        oldProxy
+        // oldProxy
       });
     });
   },

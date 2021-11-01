@@ -1,9 +1,9 @@
 <h1 align="center" style="margin-top: 1em; margin-bottom: 3em;">
   <p><a href="https://vote.makerdao.com/"><img alt="maker logo" src="./maker-logo.png" alt="vote.makerdao.com" width="125"></a></p>
-  <p> <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" alt="Waving Hand" width="25px"> Maker Governance Portal</p>
+  <p> <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" alt="Waving Hand" width="25px"> Velero Governance Portal</p>
 </h1>
 
-An open source interface for Dai Credit System governance
+An open source interface for Usdv Credit System governance
 
 ## Development
 

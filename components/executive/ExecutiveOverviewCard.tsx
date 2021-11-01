@@ -134,7 +134,7 @@ export default function ExecutiveOverviewCard({ proposal, spellData, isHat, ...p
                     m: 1
                   }}
                 >
-                  {new Bignumber(spellData.mkrSupport).toFormat(2)} MKR Supporting
+                  {new Bignumber(spellData.mkrSupport).toFormat(2)} VDGT Supporting
                 </Badge>
               )}
             </Flex>

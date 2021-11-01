@@ -98,10 +98,10 @@ export default function SystemStatsSidebar({
 
     'mkr needed to pass': key => (
       <Flex key={key} sx={{ justifyContent: 'space-between', flexDirection: 'row' }}>
-        <Text sx={{ fontSize: 3, color: 'textSecondary' }}>MKR needed to pass</Text>
+        <Text sx={{ fontSize: 3, color: 'textSecondary' }}>VDGT needed to pass</Text>
         <Text variant="h2" sx={{ fontSize: 3 }}>
           {mkrOnHat ? (
-            `${mkrOnHat.toBigNumber().toFormat(2)} MKR`
+            `${mkrOnHat.toBigNumber().toFormat(2)} VDGT`
           ) : (
             <Box sx={{ width: 6 }}>
               <Skeleton />
@@ -113,7 +113,7 @@ export default function SystemStatsSidebar({
 
     'savings rate': key => (
       <Flex key={key} sx={{ justifyContent: 'space-between', flexDirection: 'row' }}>
-        <Text sx={{ fontSize: 3, color: 'textSecondary' }}>Dai Savings Rate</Text>
+        <Text sx={{ fontSize: 3, color: 'textSecondary' }}>Usdv Savings Rate</Text>
         <Text variant="h2" sx={{ fontSize: 3 }}>
           {savingsRate ? (
             `${savingsRate.multipliedBy(100).toFixed(2)}%`
@@ -128,10 +128,10 @@ export default function SystemStatsSidebar({
 
     'total dai': key => (
       <Flex key={key} sx={{ justifyContent: 'space-between', flexDirection: 'row' }}>
-        <Text sx={{ fontSize: 3, color: 'textSecondary' }}>Total Dai</Text>
+        <Text sx={{ fontSize: 3, color: 'textSecondary' }}>Total Usdv</Text>
         <Text variant="h2" sx={{ fontSize: 3 }}>
           {totalDai ? (
-            `${bigNumberKFormat(totalDai)} DAI`
+            `${bigNumberKFormat(totalDai)} USDV`
           ) : (
             <Box sx={{ width: 6 }}>
               <Skeleton />
@@ -143,10 +143,10 @@ export default function SystemStatsSidebar({
 
     'debt ceiling': key => (
       <Flex key={key} sx={{ justifyContent: 'space-between', flexDirection: 'row' }}>
-        <Text sx={{ fontSize: 3, color: 'textSecondary' }}>Dai Debt Ceiling</Text>
+        <Text sx={{ fontSize: 3, color: 'textSecondary' }}>Usdv Debt Ceiling</Text>
         <Text variant="h2" sx={{ fontSize: 3 }}>
           {debtCeiling ? (
-            `${bigNumberKFormat(debtCeiling)} DAI`
+            `${bigNumberKFormat(debtCeiling)} USDV`
           ) : (
             <Box sx={{ width: 6 }}>
               <Skeleton />
@@ -161,7 +161,7 @@ export default function SystemStatsSidebar({
         <Text sx={{ fontSize: 3, color: 'textSecondary' }}>System Surplus</Text>
         <Text variant="h2" sx={{ fontSize: 3 }}>
           {systemSurplus ? (
-            `${systemSurplus.toBigNumber().toFormat(0)} DAI`
+            `${systemSurplus.toBigNumber().toFormat(0)} USDV`
           ) : (
             <Box sx={{ width: 6 }}>
               <Skeleton />
@@ -178,18 +178,18 @@ export default function SystemStatsSidebar({
         <Heading as="h3" variant="microHeading">
           System Info
         </Heading>
-        <ExternalLink
-          href="https://daistats.com/"
-          target="_blank"
-          sx={{ color: 'accentBlue', fontSize: 3, ':hover': { color: 'blueLinkHover' } }}
-        >
-          <Flex sx={{ alignItems: 'center' }}>
-            <Text>
-              See more
-              <Icon ml={2} name="arrowTopRight" size={2} />
-            </Text>
-          </Flex>
-        </ExternalLink>
+        {/*<ExternalLink*/}
+        {/*  href="https://daistats.com/"*/}
+        {/*  target="_blank"*/}
+        {/*  sx={{ color: 'accentBlue', fontSize: 3, ':hover': { color: 'blueLinkHover' } }}*/}
+        {/*>*/}
+        {/*  <Flex sx={{ alignItems: 'center' }}>*/}
+        {/*    <Text>*/}
+        {/*      See more*/}
+        {/*      <Icon ml={2} name="arrowTopRight" size={2} />*/}
+        {/*    </Text>*/}
+        {/*  </Flex>*/}
+        {/*</ExternalLink>*/}
       </Flex>
       <Card variant="compact">
         <Stack gap={3}>{fields.map(field => statsMap[field](field))}</Stack>

@@ -11,7 +11,7 @@ export async function fetchChainDelegates(
 
   const mkrStaked = await Promise.all(
     delegates.map(async delegate => {
-      // Get MKR delegated to each contract
+      // Get VDGT delegated to each contract
       const mkr = await maker.service('chief').getNumDeposits(delegate.voteDelegate);
       return mkr.toNumber();
     })

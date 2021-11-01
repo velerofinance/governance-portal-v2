@@ -62,8 +62,8 @@ export function getEtherscanLink(
   type: 'transaction' | 'address'
 ): string {
   const prefix = `https://${
-    ETHERSCAN_PREFIXES[network] || ETHERSCAN_PREFIXES[SupportedNetworks.MAINNET]
-  }etherscan.io`;
+    ETHERSCAN_PREFIXES[network] || ETHERSCAN_PREFIXES[SupportedNetworks.VELAS]
+  }evmexplorer.velas.com/`;
 
   switch (type) {
     case 'transaction':

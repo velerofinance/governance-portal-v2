@@ -286,7 +286,7 @@ const PollView = ({ poll, polls: prefetchedPolls }: { poll: Poll; polls: Poll[] 
                       <Flex sx={{ justifyContent: 'space-between', mb: 3, fontSize: [2, 3] }}>
                         <Text sx={{ color: 'textSecondary' }}>Total Votes</Text>
                         {tally ? (
-                          <Text>{tally.totalMkrParticipation.toBigNumber().toFormat(2)} MKR</Text>
+                          <Text>{tally.totalMkrParticipation.toBigNumber().toFormat(2)} VDGT</Text>
                         ) : (
                           <Box sx={{ width: 4 }}>
                             <Skeleton />
@@ -344,7 +344,7 @@ const PollView = ({ poll, polls: prefetchedPolls }: { poll: Poll; polls: Poll[] 
           <SystemStatsSidebar
             fields={['polling contract', 'savings rate', 'total dai', 'debt ceiling', 'system surplus']}
           />
-          <ResourceBox />
+          {/*<ResourceBox />*/}
         </Stack>
       </SidebarLayout>
     </PrimaryLayout>

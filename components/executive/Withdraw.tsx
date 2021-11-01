@@ -38,7 +38,7 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
             .getToken('IOU')
             .allowance(address, maker.service('smartContract').getContractAddresses().CHIEF)
         )
-        .then(val => val?.gt('10e26')) // greater than 100,000,000 MKR
+        .then(val => val?.gt('10e26')) // greater than 100,000,000 VDGT
   );
 
   const { data: lockedMkr } = useLockedMkr(address, voteProxy);
@@ -85,7 +85,7 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
             Withdraw from voting contract
           </Text>
           <Text as="p" sx={{ color: 'mutedAlt', fontSize: 3 }}>
-            Input the amount of MKR to withdraw from the voting contract.
+            Input the amount of VDGT to withdraw from the voting contract.
           </Text>
         </Box>
 
@@ -94,13 +94,13 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
             onChange={setMkrToWithdraw}
             balance={lockedMkr?.toBigNumber()}
             value={mkrToWithdraw}
-            balanceText="MKR in contract:"
+            balanceText="VDGT in contract:"
           />
         </Box>
 
         {voteProxy && address === voteProxy.getHotAddress() && (
           <Alert variant="notice" sx={{ fontWeight: 'normal' }}>
-            You are using the hot wallet for a voting proxy. MKR will be withdrawn to the cold wallet.
+            You are using the hot wallet for a voting proxy. VDGT will be withdrawn to the cold wallet.
           </Alert>
         )}
         <Button
@@ -114,20 +114,20 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
               ? () => voteProxy.free(mkrToWithdraw)
               : () => maker.service('chief').free(mkrToWithdraw);
 
-            const txId = await track(freeTxCreator, 'Withdrawing MKR', {
+            const txId = await track(freeTxCreator, 'Withdrawing VDGT', {
               mined: txId => {
-                transactionsApi.getState().setMessage(txId, 'MKR withdrawn');
+                transactionsApi.getState().setMessage(txId, 'VDGT withdrawn');
                 close();
               },
               error: () => {
-                transactionsApi.getState().setMessage(txId, 'MKR withdraw failed');
+                transactionsApi.getState().setMessage(txId, 'VDGT withdraw failed');
                 close();
               }
             });
             setTxId(txId);
           }}
         >
-          Withdraw MKR
+          Withdraw VDGT
         </Button>
       </Stack>
     );
@@ -140,7 +140,7 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
             Approve voting contract
           </Text>
           <Text as="p" sx={{ color: 'mutedAlt', fontSize: 3 }}>
-            Approve the transfer of IOU tokens to the voting contract to withdraw your MKR.
+            Approve the transfer of IOU tokens to the voting contract to withdraw your VDGT.
           </Text>
         </Box>
 

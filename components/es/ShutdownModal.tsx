@@ -30,12 +30,12 @@ const ModalContent = ({
     const maker = await getMaker();
     const esm = await maker.service('esm');
     const shutdownTxObject = esm.triggerEmergencyShutdown();
-    const txId = await track(shutdownTxObject, 'Shutting Down Dai Credit System', {
+    const txId = await track(shutdownTxObject, 'Shutting Down Usdv Credit System', {
       pending: txHash => {
         setStep('pending');
       },
       mined: txId => {
-        transactionsApi.getState().setMessage(txId, 'Dai Credit System has been Shutdown');
+        transactionsApi.getState().setMessage(txId, 'Usdv Credit System has been Shutdown');
         close(); // TBD maybe show a separate "done" dialog
       },
       error: () => setStep('failed')
@@ -50,12 +50,12 @@ const ModalContent = ({
       <Close onClick={() => setShowDialog(false)} sx={{ alignSelf: 'flex-end' }} />
       <Icon ml={2} name="warning" size={5} sx={{ color: 'notice' }} />
       <Text variant="heading" mt={4}>
-        Shutting down the Dai Credit System
+        Shutting down the Usdv Credit System
       </Text>
       <Text variant="text" sx={{ mt: 3 }}>
-        The {thresholdAmount ? thresholdAmount.toBigNumber().toFormat() : '---'} MKR limit for the emergency
+        The {thresholdAmount ? thresholdAmount.toBigNumber().toFormat() : '---'} VDGT limit for the emergency
         shutdown module has been reached. By continuing past this alert, emergency shutdown will be initiated
-        for the Dai Credit System.
+        for the Usdv Credit System.
       </Text>
       <Grid columns={2} mt={4}>
         <Button

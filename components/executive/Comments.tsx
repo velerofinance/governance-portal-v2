@@ -28,7 +28,7 @@ export default function CommentsTab({
         const aDate = a.date || 0;
         const bDate = b.date || 0;
         return aDate < bDate ? 1 : aDate === bDate ? 0 : -1;
-      } else if (commentSortBy === 'MKR Amount') {
+      } else if (commentSortBy === 'VDGT Amount') {
         const aWeight = new BigNumber(a.voterWeight || 0);
         const bWeight = new BigNumber(b.voterWeight || 0);
         return aWeight.lt(bWeight) ? 1 : aWeight.eq(bWeight) ? 0 : -1;
@@ -72,7 +72,7 @@ export default function CommentsTab({
                       <Text>{formatAddress(comment.voterAddress)}</Text>
                     </ExternalLink>
                     <Text variant="text" sx={{ ml: 1, fontWeight: 'normal' }}>
-                      voted with {comment.voterWeight} MKR{' '}
+                      voted with {comment.voterWeight} VDGT{' '}
                     </Text>
                   </Flex>
                   <Text mt={2} variant="text" color="secondaryEmphasis" sx={{ overflowWrap: 'break-word' }}>

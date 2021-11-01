@@ -56,7 +56,7 @@ const Delegates = ({ delegates, stats }: Props) => {
   return (
     <PrimaryLayout shortenFooter={true} sx={{ maxWidth: [null, null, null, 'page', 'dashboard'] }}>
       <Head>
-        <title>Maker Governance - Delegates</title>
+        <title>Velero Governance - Delegates</title>
       </Head>
 
       <SidebarLayout>
@@ -137,7 +137,7 @@ const Delegates = ({ delegates, stats }: Props) => {
             </Card>
           </Box>
           {stats && <DelegatesSystemInfo stats={stats} />}
-          <ResourceBox />
+          {/*<ResourceBox />*/}
         </Stack>
       </SidebarLayout>
     </PrimaryLayout>

@@ -85,7 +85,7 @@ describe('Delegates list page', () => {
     await setup(maker, mockResponse);
   });
 
-  test('can delegate MKR to a delegate', async () => {
+  test('can delegate VDGT to a delegate', async () => {
     await screen.findByText('Recognized Delegates');
 
     // Open delegate modal
@@ -107,7 +107,7 @@ describe('Delegates list page', () => {
     fireEvent.change(input, { target: { value: mkrToDeposit } });
 
     // Delegate Process
-    const delegateMKRButton = screen.getByText('Delegate MKR', { selector: 'button' });
+    const delegateMKRButton = screen.getByText('Delegate VDGT', { selector: 'button' });
     click(delegateMKRButton);
 
     // Make sure modal displays etherscan links correctly
@@ -127,8 +127,8 @@ describe('Delegates list page', () => {
 
     // UI updates to display totals correctly
     const [delegatedTotal, delegatedByYou] = await screen.findAllByText(/3.20/);
-    expect(delegatedTotal.parentElement).toHaveTextContent(/Total MKR delegated/);
-    expect(delegatedByYou.parentElement).toHaveTextContent(/MKR delegated by you/);
+    expect(delegatedTotal.parentElement).toHaveTextContent(/Total VDGT delegated/);
+    expect(delegatedByYou.parentElement).toHaveTextContent(/VDGT delegated by you/);
 
     // Open undelegate modal
     const unDelegateButton = screen.getByText('Undelegate');
@@ -150,7 +150,7 @@ describe('Delegates list page', () => {
     const unInput = screen.getByRole('spinbutton') as HTMLInputElement;
     expect(unInput.value).toBe('3.2');
 
-    const undelegateMKRButton = screen.getByText('Undelegate MKR', { selector: 'button' });
+    const undelegateMKRButton = screen.getByText('Undelegate VDGT', { selector: 'button' });
     click(undelegateMKRButton);
 
     // Wait for transactions again...
@@ -163,7 +163,7 @@ describe('Delegates list page', () => {
 
     // Voting weights are returned to 0 after undelegating
     const newTotal = screen.getByTestId('total-mkr-delegated');
-    const newByYou = await screen.findByText(/MKR delegated by you/);
+    const newByYou = await screen.findByText(/VDGT delegated by you/);
 
     expect(newTotal).toHaveTextContent('0.00');
     expect(newByYou.previousSibling).toHaveTextContent('0.00');

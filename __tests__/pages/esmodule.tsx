@@ -63,15 +63,15 @@ describe('ES Module', () => {
       expect(title).toBeTruthy();
     });
 
-    test('show "Burn your MKR" button', async () => {
+    test('show "Burn your VDGT" button', async () => {
       const { findByText } = renderWithTheme(<ESModule />);
 
-      const buttonBurn = await findByText('Burn Your MKR', {}, { timeout: 15000 });
+      const buttonBurn = await findByText('Burn Your VDGT', {}, { timeout: 15000 });
       expect(buttonBurn).toBeDefined();
       // Initiate Emergency Shutdow
     });
 
-    describe('MKR Modal Flow', () => {
+    describe('VDGT Modal Flow', () => {
       beforeEach(async () => {
         const token = maker.service('smartContract').getContract('MCD_GOV');
         const account = maker.currentAccount();
@@ -86,7 +86,7 @@ describe('ES Module', () => {
         }, 10000);
       });
 
-      test('Burn MKR Modal Flow', async () => {
+      test('Burn VDGT Modal Flow', async () => {
         const { getByTestId, getByText, findByText, findByTestId } = renderWithTheme(<ESModule />);
 
         // Intro Render
@@ -98,24 +98,24 @@ describe('ES Module', () => {
         // click(getByText('Continue'));
 
         // First Step Render
-        const burnButton = await findByText('Burn Your MKR', {}, { timeout: 5000 });
+        const burnButton = await findByText('Burn Your VDGT', {}, { timeout: 5000 });
         fireEvent.click(burnButton);
-        await findByText('Are you sure you want to burn MKR?');
+        await findByText('Are you sure you want to burn VDGT?');
         fireEvent.click(getByText('Continue'));
 
         // Second Step Render
-        await findByText('Enter the amount of MKR to burn');
+        await findByText('Enter the amount of VDGT to burn');
 
-        // Not Enough MKR Check
+        // Not Enough VDGT Check
         const amount = 35;
         fireEvent.change(getByTestId('mkr-input'), { target: { value: amount } });
-        const tooLow = await findByText('MKR balance too low', {}, { timeout: 3000 });
+        const tooLow = await findByText('VDGT balance too low', {}, { timeout: 3000 });
         expect(tooLow).toBeTruthy();
 
         // Wait until user balance is loaded
         await findByTestId('mkr-input-balance');
 
-        // await wait(() => getByText("You don't have enough MKR"));
+        // await wait(() => getByText("You don't have enough VDGT"));
         const input = getByTestId('mkr-input');
         const continueButton = getByText('Continue');
 
@@ -127,7 +127,7 @@ describe('ES Module', () => {
         fireEvent.click(setMaxButton);
         expect(input).toHaveValue(2.0);
 
-        // MKR is Chief Check
+        // VDGT is Chief Check
         // getByTestId('voting-power');
 
         // Valid Amount Check
@@ -155,11 +155,11 @@ describe('ES Module', () => {
         await waitFor(() => expect(allowanceBtn.disabled).toBeTruthy());
 
         // Incorrect Input Check
-        fireEvent.change(confirmInput, { target: { value: 'I am burning 2.00 MKR' } });
+        fireEvent.change(confirmInput, { target: { value: 'I am burning 2.00 VDGT' } });
         await waitFor(() => expect(burnMKRbutton.disabled).toBeTruthy());
 
         // Correct Input Check
-        fireEvent.change(confirmInput, { target: { value: 'I am burning 1.00 MKR' } });
+        fireEvent.change(confirmInput, { target: { value: 'I am burning 1.00 VDGT' } });
         await waitFor(() => expect(!burnMKRbutton.disabled).toBeTruthy(), { timeout: 5000 });
 
         fireEvent.click(burnMKRbutton);
@@ -169,7 +169,7 @@ describe('ES Module', () => {
         expect(signTransaction).toBeTruthy();
 
         // Fourth Step Success Render
-        await findByText('MKR successfully burned in ESM', {}, { timeout: 10000 });
+        await findByText('VDGT successfully burned in ESM', {}, { timeout: 10000 });
       });
     });
   });

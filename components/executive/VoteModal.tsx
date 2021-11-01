@@ -190,7 +190,7 @@ const VoteModal = ({ close, proposal, currentSlate = [] }: Props): JSX.Element =
             </Text>
             {lockedMkr ? (
               <Text as="p" color="text" mt={[0, 2]} sx={{ fontSize: 3, fontWeight: 'medium' }}>
-                {votingWeight} MKR
+                {votingWeight} VDGT
               </Text>
             ) : (
               <Box sx={{ mt: [0, 2] }}>
@@ -200,11 +200,11 @@ const VoteModal = ({ close, proposal, currentSlate = [] }: Props): JSX.Element =
           </GridBox>
           <GridBox bpi={bpi}>
             <Text as="p" color="onSecondary" sx={{ fontSize: 3 }}>
-              MKR supporting
+              VDGT supporting
             </Text>
             {spellData ? (
               <Text as="p" color="text" mt={[0, 2]} sx={{ fontSize: 3, fontWeight: 'medium' }}>
-                {mkrSupporting} MKR
+                {mkrSupporting} VDGT
               </Text>
             ) : (
               <Box sx={{ mt: [0, 2] }}>
@@ -218,7 +218,7 @@ const VoteModal = ({ close, proposal, currentSlate = [] }: Props): JSX.Element =
             </Text>
             {lockedMkr && spellData ? (
               <Text as="p" color="text" mt={[0, 2]} sx={{ fontSize: 3, fontWeight: 'medium' }}>
-                {afterVote} MKR
+                {afterVote} VDGT
               </Text>
             ) : (
               <Box sx={{ mt: [0, 2] }}>
@@ -273,9 +273,9 @@ const VoteModal = ({ close, proposal, currentSlate = [] }: Props): JSX.Element =
             disabled={comment.length > 250}
           >
             {currentSlate.includes(proposal.address) && currentSlate.length > 1
-              ? 'Concentrate all my MKR on this proposal'
+              ? 'Concentrate all my VDGT on this proposal'
               : !currentSlate.includes(proposal.address) && isHat
-              ? 'Add MKR to secure the protocol'
+              ? 'Add VDGT to secure the protocol'
               : 'Submit Vote'}
           </Button>
           {showHatCheckbox ? (
@@ -297,7 +297,7 @@ const VoteModal = ({ close, proposal, currentSlate = [] }: Props): JSX.Element =
                   setHatChecked(event.target.checked);
                 }}
               />
-              Keep my MKR on old proposal to secure the Maker protocol
+              Keep my VDGT on old proposal to secure the Velero protocol
             </Label>
           ) : null}
         </Box>

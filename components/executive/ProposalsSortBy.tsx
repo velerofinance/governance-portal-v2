@@ -28,13 +28,13 @@ export default function ProposalsSortBy(props): JSX.Element {
         Date Posted
       </MenuItem>
       <MenuItem
-        onSelect={() => setExecutiveSortBy('MKR Amount')}
+        onSelect={() => setExecutiveSortBy('VDGT Amount')}
         sx={{
           variant: 'menubuttons.default.item',
-          fontWeight: executiveSortBy === 'MKR Amount' ? 'bold' : undefined
+          fontWeight: executiveSortBy === 'VDGT Amount' ? 'bold' : undefined
         }}
       >
-        MKR Amount
+        VDGT Amount
       </MenuItem>
     </FilterButton>
   );

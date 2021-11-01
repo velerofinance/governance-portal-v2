@@ -200,7 +200,7 @@ export function DelegateCard({ delegate }: PropTypes): React.ReactElement {
                 {totalStaked ? totalStaked.toBigNumber().toFormat(2) : '0.00'}
               </Text>
               <Text as="p" variant="secondary" color="onSecondary" sx={{ fontSize: [2, 3] }}>
-                Total MKR delegated
+                Total VDGT delegated
               </Text>
             </Box>
             <Box sx={{ width: '200px' }}>
@@ -208,7 +208,7 @@ export function DelegateCard({ delegate }: PropTypes): React.ReactElement {
                 {mkrStaked ? mkrStaked.toBigNumber().toFormat(2) : '0.00'}
               </Text>
               <Text as="p" variant="secondary" color="onSecondary" sx={{ fontSize: [2, 3] }}>
-                MKR delegated by you
+                VDGT delegated by you
               </Text>
             </Box>
             <Box>

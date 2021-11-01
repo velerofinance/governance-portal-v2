@@ -32,7 +32,7 @@ const AddressView = ({ addressInfo }: { addressInfo: AddressApiResponse }) => {
   return (
     <PrimaryLayout shortenFooter={true} sx={{ maxWidth: [null, null, null, 'page', 'dashboard'] }}>
       <Head>
-        <title>Maker Governance - {addressInfo.isDelegate ? 'Delegate' : 'Address'} Information</title>
+        <title>Velero Governance - {addressInfo.isDelegate ? 'Delegate' : 'Address'} Information</title>
       </Head>
 
       <SidebarLayout>
@@ -71,7 +71,7 @@ const AddressView = ({ addressInfo }: { addressInfo: AddressApiResponse }) => {
           <SystemStatsSidebar
             fields={['polling contract', 'savings rate', 'total dai', 'debt ceiling', 'system surplus']}
           />
-          <ResourceBox />
+          {/*<ResourceBox />*/}
         </Stack>
       </SidebarLayout>
     </PrimaryLayout>

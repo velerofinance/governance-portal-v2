@@ -63,10 +63,10 @@ export default function MkrLiquiditySidebar({ className }: { className?: string 
     const [poolName, poolLiquidity] = pool;
     return (
       <Flex key={poolName} sx={{ justifyContent: 'space-between', flexDirection: 'row' }}>
-        <Text sx={{ fontSize: 3, color: 'textSecondary' }}>MKR in {poolName}</Text>
+        <Text sx={{ fontSize: 3, color: 'textSecondary' }}>VDGT in {poolName}</Text>
         <Text variant="h2" sx={{ fontSize: 3 }}>
           {poolLiquidity ? (
-            `${poolLiquidity.toBigNumber().toFormat(0)} MKR`
+            `${poolLiquidity.toBigNumber().toFormat(0)} VDGT`
           ) : (
             <Box sx={{ width: 6 }}>
               <Skeleton />
@@ -80,7 +80,7 @@ export default function MkrLiquiditySidebar({ className }: { className?: string 
   return (
     <Box sx={{ display: ['none', 'block'] }} className={className}>
       <Heading as="h3" variant="microHeading" sx={{ mb: 2, mt: 3 }}>
-        MKR Liquidity
+        VDGT Liquidity
       </Heading>
       <Card variant="compact">
         <Stack gap={3}>{mkrPools.map(p => PoolComponent(p))}</Stack>

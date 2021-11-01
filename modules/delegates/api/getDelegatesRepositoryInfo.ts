@@ -8,17 +8,17 @@ type RepositoryInfo = {
 
 export function getDelegatesRepositoryInformation(network: SupportedNetworks): RepositoryInfo {
   const repoMainnet = {
-    owner: 'makerdao',
+    owner: 'velerofinance',
     repo: 'community',
     page: 'governance/delegates'
   };
 
   const repoKovan = {
-    owner: 'makerdao-dux',
+    owner: 'velerofinance',
     repo: 'voting-delegates',
     page: 'delegates'
   };
 
-  const delegatesRepositoryInfo = network === SupportedNetworks.MAINNET ? repoMainnet : repoKovan;
+  const delegatesRepositoryInfo = network === SupportedNetworks.VELAS ? repoMainnet : repoKovan;
   return delegatesRepositoryInfo;
 }

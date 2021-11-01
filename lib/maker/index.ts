@@ -1,7 +1,7 @@
 import Maker from '@makerdao/dai';
 import McdPlugin, { DAI } from '@makerdao/dai-plugin-mcd';
-import LedgerPlugin from '@makerdao/dai-plugin-ledger-web';
-import TrezorPlugin from '@makerdao/dai-plugin-trezor-web';
+// import LedgerPlugin from '@makerdao/dai-plugin-ledger-web';
+// import TrezorPlugin from '@makerdao/dai-plugin-trezor-web';
 import GovernancePlugin, { MKR } from '@makerdao/dai-plugin-governance';
 import { Web3ReactPlugin } from './web3react';
 
@@ -15,14 +15,10 @@ export { MKR };
 
 function chainIdToNetworkName(chainId: number): SupportedNetworks {
   switch (chainId) {
-    case 1:
-      return SupportedNetworks.MAINNET;
-    case 42:
-      return SupportedNetworks.KOVAN;
-    case 999:
-      return SupportedNetworks.TESTNET;
-    case 1337:
-      return SupportedNetworks.TESTNET;
+    case 106:
+      return SupportedNetworks.VELAS;
+    case 111:
+      return SupportedNetworks.VELASTESTNET;
     default:
       throw new Error(`Unsupported chain id ${chainId}`);
   }
@@ -32,7 +28,7 @@ function chainIdToNetworkName(chainId: number): SupportedNetworks {
 function determineNetwork(): SupportedNetworks {
   if (typeof global.__TESTCHAIN__ !== 'undefined' && global.__TESTCHAIN__) {
     // if the testhchain global is set, connect to the testchain
-    return SupportedNetworks.TESTNET;
+    return SupportedNetworks.VELAS;
   } else if (typeof window === 'undefined') {
     // if not on the browser, connect to the default network
     // (eg when generating static pages at build-time)
@@ -40,12 +36,10 @@ function determineNetwork(): SupportedNetworks {
   } else {
     // otherwise, to determine the network...
     // 1) check the URL
-    if (window.location.search.includes('mainnet')) {
-      return SupportedNetworks.MAINNET;
-    } else if (window.location.search.includes('kovan')) {
-      return SupportedNetworks.KOVAN;
-    } else if (window.location.search.includes('testnet')) {
-      return SupportedNetworks.TESTNET;
+    if (window.location.search.includes('velastestnet')) {
+      return SupportedNetworks.VELASTESTNET;
+    } else if (window.location.search.includes('velas')) {
+      return SupportedNetworks.VELAS;
     }
     // 2) check the browser provider if there is one
     if (typeof window.ethereum !== 'undefined') {
@@ -63,15 +57,13 @@ function determineNetwork(): SupportedNetworks {
 }
 
 type MakerSingletons = {
-  [SupportedNetworks.MAINNET]: null | Promise<Maker>;
-  [SupportedNetworks.KOVAN]: null | Promise<Maker>;
-  [SupportedNetworks.TESTNET]: null | Promise<Maker>;
+  [SupportedNetworks.VELAS]: null | Promise<Maker>;
+  [SupportedNetworks.VELASTESTNET]: null | Promise<Maker>;
 };
 
 const makerSingletons: MakerSingletons = {
-  [SupportedNetworks.MAINNET]: null,
-  [SupportedNetworks.KOVAN]: null,
-  [SupportedNetworks.TESTNET]: null
+  [SupportedNetworks.VELAS]: null,
+  [SupportedNetworks.VELASTESTNET]: null
 };
 
 async function getMaker(network?: SupportedNetworks): Promise<Maker> {
@@ -84,8 +76,8 @@ async function getMaker(network?: SupportedNetworks): Promise<Maker> {
         [McdPlugin, { prefetch: false }],
         [GovernancePlugin, { network: currentNetwork, staging: !config.USE_PROD_SPOCK }],
         Web3ReactPlugin,
-        LedgerPlugin,
-        TrezorPlugin
+        // LedgerPlugin,
+        // TrezorPlugin
       ],
       provider: {
         url: networkToRpc(currentNetwork, 'infura'),
@@ -120,7 +112,7 @@ function isSupportedNetwork(_network: string): _network is SupportedNetworks {
 }
 
 function isTestnet(): boolean {
-  return getNetwork() === SupportedNetworks.TESTNET || !!config.TESTNET;
+  return false;
 }
 
 async function personalSign(message) {

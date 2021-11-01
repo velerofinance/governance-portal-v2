@@ -77,6 +77,9 @@ const AccountSelect = (): React.ReactElement => {
       setChainIdError('network mismatch');
   }, [chainId, error]);
 
+  if (chainId !== undefined) {
+    console.log(`fucking fuck for network ${chainId}`);
+  }
   // FIXME there must be a more direct way to get web3-react & maker to talk to each other
   syncMakerAccount(
     library,
@@ -230,8 +233,8 @@ const AccountSelect = (): React.ReactElement => {
         <Icon name={name} />
         <Text sx={{ ml: 3 }}>{loadingConnectors[name] ? 'Loading...' : name}</Text>
       </Flex>
-    ))
-    .concat([<TrezorButton key="trezor" />, <LedgerButton key="ledger" />]);
+    ));
+    // .concat([<TrezorButton key="trezor" />, <LedgerButton key="ledger" />]);
 
   const BackButton = ({ onClick }) => (
     <Flex sx={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
@@ -309,7 +312,7 @@ const AccountSelect = (): React.ReactElement => {
                     // This needs to be the change function for the wallet select dropdown
                     change={() => setChangeWallet(true)}
                   />
-                  <VotingWeight sx={{ borderBottom: '1px solid secondaryMuted', py: 1 }} />
+                  D<VotingWeight sx={{ borderBottom: '1px solid secondaryMuted', py: 1 }} />
                   {txs?.length > 0 && <TransactionBox txs={txs} />}
                   <Button
                     variant="primaryOutline"

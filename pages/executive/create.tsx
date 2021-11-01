@@ -95,7 +95,7 @@ const ExecutiveCreate = () => {
   return (
     <PrimaryLayout shortenFooter={true} sx={{ maxWidth: 'dashboard' }}>
       <Head>
-        <title>Maker Governance - Validate Executive Proposal</title>
+        <title>Velero Governance - Validate Executive Proposal</title>
       </Head>
       <Stack gap={3}>
         <Heading mb={2} as="h4">
@@ -182,11 +182,11 @@ const ExecutiveCreate = () => {
                       </tr>
                     ))}
                     <tr key={'Mainnet Address'}>
-                      <TD>Mainnet Address</TD>
+                      <TD>Velas Address</TD>
                       <TD>
                         <Link
                           target="_blank"
-                          href={getEtherscanLink(SupportedNetworks.MAINNET, mainnetAddress, 'address')}
+                          href={getEtherscanLink(SupportedNetworks.VELAS, mainnetAddress, 'address')}
                           sx={{ p: 0 }}
                         >
                           {mainnetAddress}
@@ -194,11 +194,11 @@ const ExecutiveCreate = () => {
                       </TD>
                     </tr>
                     <tr key={'Kovan Address'}>
-                      <TD>Kovan Address</TD>
+                      <TD>VelasTestnet Address</TD>
                       <TD>
                         <Link
                           target="_blank"
-                          href={getEtherscanLink(SupportedNetworks.KOVAN, kovanAddress, 'address')}
+                          href={getEtherscanLink(SupportedNetworks.VELASTESTNET, kovanAddress, 'address')}
                           sx={{ p: 0 }}
                         >
                           {kovanAddress}

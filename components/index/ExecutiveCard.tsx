@@ -107,7 +107,7 @@ export default function ExecutiveCard({ proposal, isHat, ...props }: Props): JSX
               textTransform: 'uppercase'
             }}
           >
-            {mkrSupport.toBigNumber().toFormat(2)} MKR Supporting
+            {mkrSupport.toBigNumber().toFormat(2)} VDGT Supporting
           </Badge>
         ) : (
           <Box m="auto" sx={{ m: 2, width: '200px' }}>

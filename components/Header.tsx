@@ -34,9 +34,10 @@ const Header = (props): JSX.Element => {
       }}
       {...props}
     >
-      <Link href={{ pathname: '/', query: { network } }}>
-        <IconButton aria-label="Maker home" sx={{ width: '40px', height: 4, p: 0 }}>
-          <Icon name="maker" size="40px" color="ornament" sx={{ cursor: 'pointer' }} />
+      <Link href={{ pathname: '/', query: { network } }} >
+        <IconButton aria-label="Maker home" sx={{ width: '80px', height: 4, p: 0 }}>
+          VELERO
+          {/*<Icon name="maker" size="40px" color="ornament" sx={{ cursor: 'pointer' }}/>*/}
         </IconButton>
       </Link>
       <Flex sx={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -68,19 +69,19 @@ const Header = (props): JSX.Element => {
           </NavLink>
         </Link>
 
-        <Link href={{ pathname: '/delegates', query: { network } }} passHref>
-          <NavLink
-            title="Delegates"
-            p={0}
-            sx={{
-              display: ['none', 'block'],
-              ml: [0, 4, 4, 5],
-              color: router?.asPath?.startsWith('/delegates') ? 'primary' : undefined
-            }}
-          >
-            Delegates
-          </NavLink>
-        </Link>
+        {/*<Link href={{ pathname: '/delegates', query: { network } }} passHref>*/}
+        {/*  <NavLink*/}
+        {/*    title="Delegates"*/}
+        {/*    p={0}*/}
+        {/*    sx={{*/}
+        {/*      display: ['none', 'block'],*/}
+        {/*      ml: [0, 4, 4, 5],*/}
+        {/*      color: router?.asPath?.startsWith('/delegates') ? 'primary' : undefined*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    Delegates*/}
+        {/*  </NavLink>*/}
+        {/*</Link>*/}
 
         <Link href={{ pathname: '/esmodule', query: { network } }} passHref>
           <NavLink

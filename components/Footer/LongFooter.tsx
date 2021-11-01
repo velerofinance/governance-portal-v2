@@ -183,7 +183,7 @@ export default function LongFooter({ locale = 'en' }: { locale?: string }): Reac
             <ThemeUILink
               sx={{ color: 'text' }}
               href="https://chat.makerdao.com/"
-              title="MakerDAO official chat"
+              title="VELERO official chat"
             >
               <Icon name="rocket_chat" />
             </ThemeUILink>

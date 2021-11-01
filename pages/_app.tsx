@@ -48,7 +48,7 @@ const MyApp = ({ Component, pageProps }: AppProps): React.ReactElement => {
         />
         <meta
           name="description"
-          content="MakerDAO stakeholders use the Voting Portal to vote on the blockchain. Voting occurs frequently, requiring an active, well-informed governance community."
+          content="VELERO stakeholders use the Voting Portal to vote on the blockchain. Voting occurs frequently, requiring an active, well-informed governance community."
         />
       </Head>
       <CookiesProvider disabled={false}>

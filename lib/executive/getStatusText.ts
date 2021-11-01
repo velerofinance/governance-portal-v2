@@ -7,7 +7,7 @@ export const getStatusText = (proposalAddress: string, spellData?: SpellData): s
   if (!spellData) return 'Fetching status...';
 
   if (proposalAddress === ZERO_ADDRESS) {
-    return `This proposal surpased the 80,000 MKR threshold on ${formatDateWithTime(1607704862000)} – the new
+    return `This proposal surpased the 80,000 VDGT threshold on ${formatDateWithTime(1607704862000)} – the new
     chief has been activated!`;
   }
 

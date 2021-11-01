@@ -113,7 +113,7 @@ const ConfirmBurn = ({ burnAmount, account, setShowDialog, burn, totalStaked }) 
       <Close onClick={() => setShowDialog(false)} sx={{ alignSelf: 'flex-end' }} />
       <Flex></Flex>
       <Text variant="heading" sx={{ textAlign: 'center' }}>
-        Burn your MKR in the ESM
+        Burn your VDGT in the ESM
       </Text>
       {bpi < 1 ? (
         <ConfirmBurnView
@@ -142,7 +142,7 @@ const ConfirmBurn = ({ burnAmount, account, setShowDialog, burn, totalStaked }) 
           data-testid="allowance-toggle"
         />
         <Flex ml={3}>
-          <Text>Unlock MKR to continue</Text>
+          <Text>Unlock VDGT to continue</Text>
         </Flex>
       </Flex>
       <Flex sx={{ flexDirection: 'row', mt: 3 }}>

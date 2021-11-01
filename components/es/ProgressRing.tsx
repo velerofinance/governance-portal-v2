@@ -42,7 +42,7 @@ const ProgressRing = ({
         ></circle>
         <text x="50%" y="48%" textAnchor="middle" fill="#434358" fontSize="18px" dy=".3em">
           {totalStaked ? (
-            `${totalStaked.toString(6)}     `
+            `${totalStaked.toString(6).replace('MKR', 'VDGT')}     `
           ) : (
             <Box pl="14px" pr="14px">
               <div ref={loader} />
@@ -50,7 +50,7 @@ const ProgressRing = ({
           )}
         </text>
         <text x="50%" y="58%" textAnchor="middle" fill="#708390" fontSize="14px" dy=".3em">
-          {`of ${thresholdAmount ? thresholdAmount.toString() : '---'}`}
+          {`of ${thresholdAmount ? thresholdAmount.toString().replace('MKR', 'VDGT') : '---'}`}
         </text>
       </svg>
     </Flex>

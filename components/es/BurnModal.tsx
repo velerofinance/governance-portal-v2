@@ -43,12 +43,12 @@ const ModalContent = ({
     const maker = await getMaker();
     const esm = await maker.service('esm');
     const burnTxObject = () => esm.stake(burnAmount);
-    const txId = await track(burnTxObject, 'Burning MKR in Emergency Shutdown Module', {
+    const txId = await track(burnTxObject, 'Burning VDGT in Emergency Shutdown Module', {
       pending: () => {
         setStep('pending');
       },
       mined: txId => {
-        transactionsApi.getState().setMessage(txId, 'Burned MKR in Emergency Shutdown Module');
+        transactionsApi.getState().setMessage(txId, 'Burned VDGT in Emergency Shutdown Module');
         setStep('mined');
       },
       error: () => setStep('failed')

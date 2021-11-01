@@ -8,24 +8,22 @@ import { fetchJson } from 'lib/fetchJson';
 import withApiHandler from 'lib/api/withApiHandler';
 import { config } from 'lib/config';
 import getMaker from 'lib/maker';
+import { networkToRpc } from '../../../../lib/maker/network';
 
 export default withApiHandler(async (req: NextApiRequest, res: NextApiResponse) => {
   const spellAddress: string = req.query.address as string;
   invariant(spellAddress && ethers.utils.isAddress(spellAddress), 'valid spell address required');
 
   invariant(
-    !req.query.network || req.query.network === SupportedNetworks.MAINNET,
+    !req.query.network || req.query.network === SupportedNetworks.VELAS,
     `unsupported network ${req.query.network}`
   );
 
-  const network = SupportedNetworks.MAINNET;
+  const network = SupportedNetworks.VELAS;
   const maker = await getMaker(network);
 
   const { MCD_PAUSE, MCD_PAUSE_PROXY } = maker.service('smartContract').getContractAddresses();
-  const provider = ethers.getDefaultProvider(network, {
-    infura: config.INFURA_KEY,
-    alchemy: config.ALCHEMY_KEY
-  });
+  const provider = ethers.getDefaultProvider(networkToRpc(network));
 
   console.log(config.INFURA_KEY, config.ALCHEMY_KEY, 'infura and alchemy keys state diff');
   const encoder = new ethers.utils.Interface([
@@ -93,7 +91,7 @@ export default withApiHandler(async (req: NextApiRequest, res: NextApiResponse) 
 
   console.log(trace, 'trace');
   invariant(trace, `Unable to fetch trace for spell ${spellAddress}`);
-  const decodedDiff = await fetchJson(ETH_TX_STATE_DIFF_ENDPOINT(SupportedNetworks.MAINNET), {
+  const decodedDiff = await fetchJson(ETH_TX_STATE_DIFF_ENDPOINT(SupportedNetworks.VELAS), {
     method: 'POST',
     body: JSON.stringify({ trace })
   });

@@ -23,7 +23,7 @@ const BurnPending = ({ tx, close }) => (
         <TxIndicators.Pending sx={{ width: 6 }} />
       </Flex>
       <Text sx={{ color: 'onSecondary', fontWeight: 'medium', fontSize: '16px', textAlign: 'center' }}>
-        Burned MKR amounts will update once the blockchain has confirmed the transaction.
+        Burned VDGT amounts will update once the blockchain has confirmed the transaction.
       </Text>
       <Link
         target="_blank"

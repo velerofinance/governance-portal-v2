@@ -98,7 +98,7 @@ const PollingCreate = (): React.ReactElement => {
   return (
     <PrimaryLayout shortenFooter={true} sx={{ maxWidth: 'dashboard' }}>
       <Head>
-        <title>Maker Governance - Create Poll</title>
+        <title>Velero Governance - Create Poll</title>
       </Head>
       <Stack gap={3}>
         <Heading mb={2} as="h4">
@@ -204,7 +204,7 @@ const PollingCreate = (): React.ReactElement => {
                 fields={['chief contract', 'mkr needed to pass', 'savings rate', 'total dai', 'debt ceiling']}
               />
               <MkrLiquiditySidebar />
-              <ResourceBox />
+              {/*<ResourceBox />*/}
             </Stack>
           )}
         </SidebarLayout>

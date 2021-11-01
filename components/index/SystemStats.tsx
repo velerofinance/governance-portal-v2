@@ -34,20 +34,20 @@ export default function SystemStats(): JSX.Element {
 
   const infoUnits = [
     {
-      title: 'Dai Savings Rate',
+      title: 'Usdv Savings Rate',
       value: savingsRate ? `${savingsRate.multipliedBy(100).toFixed(2)}%` : <Skeleton />
     },
     {
-      title: 'Total Dai',
-      value: totalDai ? `${totalDai.toBigNumber().toFormat(0)} DAI` : <Skeleton />
+      title: 'Total Usdv',
+      value: totalDai ? `${totalDai.toBigNumber().toFormat(0)} USDV` : <Skeleton />
     },
     {
-      title: 'Dai Debt Ceiling',
-      value: debtCeiling ? `${debtCeiling.toBigNumber().toFormat(0)} DAI` : <Skeleton />
+      title: 'Usdv Debt Ceiling',
+      value: debtCeiling ? `${debtCeiling.toBigNumber().toFormat(0)} USDV` : <Skeleton />
     },
     {
       title: 'System Surplus',
-      value: systemSurplus ? `${systemSurplus.toBigNumber().toFormat(0)} DAI` : <Skeleton />
+      value: systemSurplus ? `${systemSurplus.toBigNumber().toFormat(0)} USDV` : <Skeleton />
     }
   ];
   return (
@@ -56,21 +56,21 @@ export default function SystemStats(): JSX.Element {
       <Box sx={{ display: ['none', 'block'] }}>
         <Flex sx={{ justifyContent: 'space-between', alignItems: 'center', mb: 3, mx: 'auto' }}>
           <Text sx={{ fontSize: [4, 5], fontWeight: '500' }}>System stats</Text>
-          <ExternalLink href="https://daistats.com/" target="_blank">
-            <Flex sx={{ alignItems: 'center' }}>
-              <Text
-                sx={{
-                  color: 'accentBlue',
-                  fontSize: [2, 3],
-                  fontWeight: '500',
-                  ':hover': { color: 'blueLinkHover' }
-                }}
-              >
-                View more stats
-                <Icon ml={2} name="arrowTopRight" size="2" />
-              </Text>
-            </Flex>
-          </ExternalLink>
+          {/*<ExternalLink href="https://daistats.com/" target="_blank">*/}
+          {/*  <Flex sx={{ alignItems: 'center' }}>*/}
+          {/*    <Text*/}
+          {/*      sx={{*/}
+          {/*        color: 'accentBlue',*/}
+          {/*        fontSize: [2, 3],*/}
+          {/*        fontWeight: '500',*/}
+          {/*        ':hover': { color: 'blueLinkHover' }*/}
+          {/*      }}*/}
+          {/*    >*/}
+          {/*      View more stats*/}
+          {/*      <Icon ml={2} name="arrowTopRight" size="2" />*/}
+          {/*    </Text>*/}
+          {/*  </Flex>*/}
+          {/*</ExternalLink>*/}
         </Flex>
 
         <Flex sx={{ mx: 0, px: 5, py: 3, backgroundColor: 'background', borderRadius: 'small' }}>

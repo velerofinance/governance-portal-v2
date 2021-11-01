@@ -27,7 +27,7 @@ describe('Account select', () => {
     const displayedAddress = await screen.findAllByText('0x16F', { exact: false });
     expect(displayedAddress.length).toBe(1);
 
-    // Wait for MKR balance to load
-    await screen.findByText(/400.00 MKR/i);
+    // Wait for VDGT balance to load
+    await screen.findByText(/400.00 VDGT/i);
   });
 });

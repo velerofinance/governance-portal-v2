@@ -28,7 +28,7 @@ const ESModule = (): React.ReactElement => {
         <Flex sx={{ flexDirection: 'row' }}>
           <Text>
             {totalStaked ? (
-              `${totalStaked.toString(6)}`
+              `${totalStaked.toString(6).replace('MKR', 'VDGT')}`
             ) : (
               <Box pl="14px" pr="14px">
                 <div ref={loader} />
@@ -37,7 +37,7 @@ const ESModule = (): React.ReactElement => {
           </Text>
           {thresholdAmount && (
             <Text color="#708390" sx={{ fontWeight: '400' }}>
-              &nbsp;of {thresholdAmount ? thresholdAmount.toString() : '---'}
+              &nbsp;of {thresholdAmount ? thresholdAmount.toString().replace('MKR', 'VDGT') : '---'}
             </Text>
           )}
         </Flex>
@@ -159,19 +159,19 @@ const ESModule = (): React.ReactElement => {
       </Box>
       <Box mt={2}>
         <Text variant="text" sx={{ color: 'onSecondary' }}>
-          The ESM allows MKR holders to shutdown the system without a central authority. Once{' '}
-          {thresholdAmount ? thresholdAmount.toBigNumber().toFormat() : '---'} MKR are entered into the ESM,
+          The ESM allows VDGT holders to shutdown the system without a central authority. Once{' '}
+          {thresholdAmount ? thresholdAmount.toBigNumber().toFormat() : '---'} VDGT are entered into the ESM,
           emergency shutdown can be executed.{' '}
-          <Link
-            href="https://docs.makerdao.com/smart-contract-modules/emergency-shutdown-module"
-            target="_blank"
-          >
-            Read the documentation here.
-          </Link>
+          {/*<Link*/}
+          {/*  href="https://docs.makerdao.com/smart-contract-modules/emergency-shutdown-module"*/}
+          {/*  target="_blank"*/}
+          {/*>*/}
+          {/*  Read the documentation here.*/}
+          {/*</Link>*/}
         </Text>
       </Box>
       <Box sx={{ mt: 4 }}>
-        <Text variant="microHeading">Total MKR Burned</Text>
+        <Text variant="microHeading">Total VDGT Burned</Text>
       </Box>
       <Card mt={3}>
         {bpi < 1 ? <MobileView /> : <DesktopView />}
@@ -196,7 +196,7 @@ const ESModule = (): React.ReactElement => {
               variant="outline"
               sx={{ color: 'onNotice', borderColor: 'notice', borderRadius: 'small' }}
             >
-              {totalStaked.gte(thresholdAmount || 0) ? 'Initiate Emergency Shutdown' : 'Burn Your MKR'}
+              {totalStaked.gte(thresholdAmount || 0) ? 'Initiate Emergency Shutdown' : 'Burn Your VDGT'}
             </Button>
           ) : null}
           <Box p={2}>
@@ -206,7 +206,7 @@ const ESModule = (): React.ReactElement => {
                   You burned <strong style={{ fontWeight: 'bold' }}>{mkrInEsm.toString()}</strong> in the ESM
                 </Box>
               ) : (
-                'You have no MKR in the ESM'
+                'You have no VDGT in the ESM'
               )}
             </Text>
           </Box>

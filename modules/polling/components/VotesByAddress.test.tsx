@@ -32,7 +32,7 @@ test('renders plurality vote type correctly', async () => {
   await screen.findByText(/Address/);
   await screen.findByText(/Option/);
   await screen.findByText(/Voting Power/);
-  await screen.findByText(/MKR Amount/);
+  await screen.findByText(/VDGT Amount/);
 
   // look for yes votes
   await screen.findAllByText(/Yes/);
@@ -72,7 +72,7 @@ test('renders ranked choice vote type correctly', async () => {
   await screen.findByText(/Address/);
   await screen.findByText(/Option/);
   await screen.findByText(/Voting Power/);
-  await screen.findByText(/MKR Amount/);
+  await screen.findByText(/VDGT Amount/);
 
   // check first choice is displayed with asterisk
   await screen.findByText(/test1*/);
@@ -96,7 +96,7 @@ test('renders unknown vote type correctly', async () => {
   await screen.findByText(/Address/);
   await screen.findByText(/Option/);
   await screen.findByText(/Voting Power/);
-  await screen.findByText(/MKR Amount/);
+  await screen.findByText(/VDGT Amount/);
 
   // look for yes votes despite unknown poll type
   await screen.findAllByText(/Yes/);

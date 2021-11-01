@@ -18,7 +18,7 @@ export async function getTrace(
     return trace;
   } catch (err) {
     if (config.TRACING_RPC_NODE) {
-      console.log("Alchemy trace failed. Falling back to Maker's tracing node.");
+      console.log("Alchemy trace failed. Falling back to Velero's tracing node.");
       const trace = await new ethers.providers.JsonRpcProvider(config.TRACING_RPC_NODE).send(method, [
         parameters,
         ['vmTrace', 'stateDiff']

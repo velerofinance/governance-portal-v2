@@ -28,7 +28,7 @@ describe('MKRInput', () => {
     expect(component).toHaveTextContent('Hey');
   });
 
-  test('Should reflect the balance of MKR', async () => {
+  test('Should reflect the balance of VDGT', async () => {
     const props: Partial<MKRInputProps> = {
       balance: new BigNumber(24.5)
     };
@@ -99,6 +99,6 @@ describe('MKRInput', () => {
     const error = getByTestId('mkr-input-error');
    
     expect(error).toBeVisible();
-    expect(error).toHaveTextContent('MKR balance too low');
+    expect(error).toHaveTextContent('VDGT balance too low');
   });
 });

@@ -34,7 +34,7 @@ export function DelegatesSystemInfo({
       value: stats.shadow
     },
     {
-      title: 'Total MKR delegated',
+      title: 'Total VDGT delegated',
       id: 'total-mkr-system-info',
       value: new BigNumber(stats.totalMKRDelegated).toFormat(2)
     }

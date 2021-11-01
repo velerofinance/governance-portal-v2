@@ -82,7 +82,7 @@ const ESMHistory = ({ stakingHistory }: Props): JSX.Element => {
                       {action.amount.gte(0.01)
                         ? formatRound(action.amount.toNumber())
                         : formatRound(action.amount.toNumber(), 6)}{' '}
-                      MKR
+                      VDGT
                     </Text>
                   </td>
                   <td>

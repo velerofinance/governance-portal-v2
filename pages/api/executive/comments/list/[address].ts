@@ -13,7 +13,7 @@ export default withApiHandler(async (req: NextApiRequest, res: NextApiResponse) 
 
   // only list comments for mainnet
   invariant(
-    !req.query.network || req.query.network === SupportedNetworks.MAINNET,
+    !req.query.network || req.query.network === SupportedNetworks.VELAS,
     `unsupported network ${req.query.network}`
   );
 

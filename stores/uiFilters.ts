@@ -16,10 +16,10 @@ type Store = {
   setCategoryFilter: (categoryFilter: { [category: string]: boolean }) => void;
   setShowHistorical: (showHistorical: boolean) => void;
   resetPollFilters: () => void;
-  executiveSortBy: 'Date Posted' | 'MKR Amount';
-  setExecutiveSortBy: (method: 'Date Posted' | 'MKR Amount') => void;
-  commentSortBy: 'Latest' | 'Oldest' | 'MKR Amount';
-  setCommentSortBy: (address: 'Latest' | 'Oldest' | 'MKR Amount') => void;
+  executiveSortBy: 'Date Posted' | 'VDGT Amount';
+  setExecutiveSortBy: (method: 'Date Posted' | 'VDGT Amount') => void;
+  commentSortBy: 'Latest' | 'Oldest' | 'VDGT Amount';
+  setCommentSortBy: (address: 'Latest' | 'Oldest' | 'VDGT Amount') => void;
 };
 
 const [useUiFiltersStore] = create<Store>((set, get) => ({
@@ -72,7 +72,7 @@ const [useUiFiltersStore] = create<Store>((set, get) => ({
 
   commentSortBy: 'Latest',
 
-  setCommentSortBy: (sortMethod: 'Latest' | 'Oldest' | 'MKR Amount') => {
+  setCommentSortBy: (sortMethod: 'Latest' | 'Oldest' | 'VDGT Amount') => {
     set({ commentSortBy: sortMethod });
   }
 }));

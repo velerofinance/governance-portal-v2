@@ -44,7 +44,7 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
       )
   );
 
-  const hasLargeMkrAllowance = chiefAllowance?.gt('10e26'); // greater than 100,000,000 MKR
+  const hasLargeMkrAllowance = chiefAllowance?.gt('10e26'); // greater than 100,000,000 VDGT
 
   const [track, tx] = useTransactionStore(
     state => [state.track, txId ? transactionsSelectors.getTransaction(state, txId) : null],
@@ -88,7 +88,7 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
             Deposit into voting contract
           </Text>
           <Text as="p" sx={{ color: 'mutedAlt', fontSize: 3 }}>
-            Input the amount of MKR to deposit into the voting contract.
+            Input the amount of VDGT to deposit into the voting contract.
           </Text>
         </Box>
 
@@ -105,20 +105,20 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
             const lockTxCreator = voteProxy
               ? () => voteProxy.lock(mkrToDeposit)
               : () => maker.service('chief').lock(mkrToDeposit);
-            const txId = await track(lockTxCreator, 'Depositing MKR', {
+            const txId = await track(lockTxCreator, 'Depositing VDGT', {
               mined: txId => {
-                transactionsApi.getState().setMessage(txId, 'MKR deposited');
+                transactionsApi.getState().setMessage(txId, 'VDGT deposited');
                 close();
               },
               error: () => {
-                transactionsApi.getState().setMessage(txId, 'MKR deposit failed');
+                transactionsApi.getState().setMessage(txId, 'VDGT deposit failed');
                 close();
               }
             });
             setTxId(txId);
           }}
         >
-          Deposit MKR
+          Deposit VDGT
         </Button>
       </Stack>
     );
@@ -130,7 +130,7 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
             Approve voting contract
           </Text>
           <Text as="p" sx={{ color: 'mutedAlt', fontSize: 3, mt: 3 }}>
-            Approve the transfer of MKR to the voting contract.
+            Approve the transfer of VDGT to the voting contract.
           </Text>
         </Box>
 
@@ -146,13 +146,13 @@ const ModalContent = ({ address, voteProxy, close, ...props }) => {
                   voteProxy?.getProxyAddress() || maker.service('smartContract').getContractAddresses().CHIEF
                 );
 
-            const txId = await track(approveTxCreator, 'Granting MKR approval', {
+            const txId = await track(approveTxCreator, 'Granting VDGT approval', {
               mined: txId => {
-                transactionsApi.getState().setMessage(txId, 'Granted MKR approval');
+                transactionsApi.getState().setMessage(txId, 'Granted VDGT approval');
                 setTxId(null);
               },
               error: () => {
-                transactionsApi.getState().setMessage(txId, 'MKR approval failed');
+                transactionsApi.getState().setMessage(txId, 'VDGT approval failed');
                 setTxId(null);
               }
             });

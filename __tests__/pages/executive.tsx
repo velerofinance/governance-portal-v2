@@ -59,7 +59,7 @@ describe('Executive page', () => {
     await screen.findByText('Deposit into voting contract');
     const input = screen.getByTestId('mkr-input');
     fireEvent.change(input, { target: { value: '10' } });
-    const finalDepositButton = await screen.findByText('Deposit MKR');
+    const finalDepositButton = await screen.findByText('Deposit VDGT');
     expect(finalDepositButton).toBeEnabled();
 
     click(finalDepositButton);
@@ -77,7 +77,7 @@ describe('Executive page', () => {
     const inputWithdraw = screen.getByTestId('mkr-input');
     fireEvent.change(inputWithdraw, { target: { value: '10' } });
 
-    const finalDepositButtonWithdraw = await screen.findByText('Withdraw MKR');
+    const finalDepositButtonWithdraw = await screen.findByText('Withdraw VDGT');
 
     expect(finalDepositButtonWithdraw).toBeEnabled();
 

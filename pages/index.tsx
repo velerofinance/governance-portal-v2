@@ -52,7 +52,7 @@ const LandingPage = ({ proposals, polls, blogPosts }: Props) => {
   return (
     <div>
       <Head>
-        <title>Maker Governance Voting Portal</title>
+        <title>Velero Governance Voting Portal</title>
       </Head>
       <div
         sx={{
@@ -94,8 +94,8 @@ const LandingPage = ({ proposals, polls, blogPosts }: Props) => {
               .
             </Text> */}
         {/* <Text>
-              MakerDAO is currently migrating to a new governance chief contract to prevent flashloans from
-              being used in governance activities. Please withdraw from the old Chief, deposit your MKR in the
+              VELERO is currently migrating to a new governance chief contract to prevent flashloans from
+              being used in governance activities. Please withdraw from the old Chief, deposit your VDGT in the
               new Chief contract, and vote on the new proposal on the Executive Voting page. For more
               information please refer to this{' '}
               <Link href="//blog.makerdao.com/maker-dschief-1-2-governance-security-update-requires-mkr-holder-actions/">
@@ -123,7 +123,7 @@ const LandingPage = ({ proposals, polls, blogPosts }: Props) => {
               <Container pt={4} sx={{ maxWidth: 'title', textAlign: 'center' }}>
                 <Stack gap={3}>
                   <Heading as="h1" sx={{ color: 'text', fontSize: [7, 8] }}>
-                    Maker Governance
+                    Velero Governance
                   </Heading>
                   <Text
                     as="p"
@@ -136,7 +136,7 @@ const LandingPage = ({ proposals, polls, blogPosts }: Props) => {
                       px: [3, 'inherit']
                     }}
                   >
-                    Join a decentralized community protecting the integrity of the Maker Protocol through
+                    Join a decentralized community protecting the integrity of the Velero Protocol through
                     research, discussion, and on-chain voting.
                   </Text>
                   <Flex
@@ -154,49 +154,49 @@ const LandingPage = ({ proposals, polls, blogPosts }: Props) => {
             <SystemStats />
           </section>
 
-          <section>
-            <Grid gap={[4, 5]} sx={{ px: [2, 0] }} columns={[1, 3]}>
-              <IntroCard
-                title="Intro to Governance"
-                linkDest="https://makerdao.world/learn/governance"
-                icon="govIntro"
-                sx={{
-                  '&:hover': {
-                    backgroundColor: '#FFC28608',
-                    borderColor: '#FFC286CC'
-                  }
-                }}
-              >
-                A guide outlining the basics of getting started with Maker Governance.
-              </IntroCard>
-              <IntroCard
-                title="Maker Forum"
-                linkDest="https://forum.makerdao.com"
-                icon="govForum"
-                sx={{
-                  '&:hover': {
-                    backgroundColor: '#AFBBFF08',
-                    borderColor: '#AFBBFFCC'
-                  }
-                }}
-              >
-                Get the latest updates and take part in current governance discussions.
-              </IntroCard>
-              <IntroCard
-                title="Community Tools"
-                linkDest="https://makerdao.world/learn/governance/participate"
-                icon="govCalls"
-                sx={{
-                  '&:hover': {
-                    backgroundColor: '#84CBC408',
-                    borderColor: '#84CBC4CC'
-                  }
-                }}
-              >
-                Use tools from the community to stay informed on the state of the system.
-              </IntroCard>
-            </Grid>
-          </section>
+          {/*<section>*/}
+          {/*  <Grid gap={[4, 5]} sx={{ px: [2, 0] }} columns={[1, 3]}>*/}
+          {/*    <IntroCard*/}
+          {/*      title="Intro to Governance"*/}
+          {/*      linkDest="https://makerdao.world/learn/governance"*/}
+          {/*      icon="govIntro"*/}
+          {/*      sx={{*/}
+          {/*        '&:hover': {*/}
+          {/*          backgroundColor: '#FFC28608',*/}
+          {/*          borderColor: '#FFC286CC'*/}
+          {/*        }*/}
+          {/*      }}*/}
+          {/*    >*/}
+          {/*      A guide outlining the basics of getting started with Velas Governance.*/}
+          {/*    </IntroCard>*/}
+          {/*    <IntroCard*/}
+          {/*      title="Velero Forum"*/}
+          {/*      linkDest="https://forum.makerdao.com"*/}
+          {/*      icon="govForum"*/}
+          {/*      sx={{*/}
+          {/*        '&:hover': {*/}
+          {/*          backgroundColor: '#AFBBFF08',*/}
+          {/*          borderColor: '#AFBBFFCC'*/}
+          {/*        }*/}
+          {/*      }}*/}
+          {/*    >*/}
+          {/*      Get the latest updates and take part in current governance discussions.*/}
+          {/*    </IntroCard>*/}
+          {/*    <IntroCard*/}
+          {/*      title="Community Tools"*/}
+          {/*      linkDest="https://makerdao.world/learn/governance/participate"*/}
+          {/*      icon="govCalls"*/}
+          {/*      sx={{*/}
+          {/*        '&:hover': {*/}
+          {/*          backgroundColor: '#84CBC408',*/}
+          {/*          borderColor: '#84CBC4CC'*/}
+          {/*        }*/}
+          {/*      }}*/}
+          {/*    >*/}
+          {/*      Use tools from the community to stay informed on the state of the system.*/}
+          {/*    </IntroCard>*/}
+          {/*  </Grid>*/}
+          {/*</section>*/}
 
           <section>
             <Stack>
@@ -274,14 +274,14 @@ const LandingPage = ({ proposals, polls, blogPosts }: Props) => {
                   bg: 'background'
                 }}
               />
-              <Stack>
-                <Heading as="h2">Recent Governance Blog Posts</Heading>
-                <Grid gap={4} columns={[1, 3]} sx={{ px: [3, 4] }}>
-                  {blogPosts.map(post => (
-                    <BlogPostCard key={post.link} blogPost={post} />
-                  ))}
-                </Grid>
-              </Stack>
+              {/*<Stack>*/}
+              {/*  <Heading as="h2">Recent Governance Blog Posts</Heading>*/}
+              {/*  <Grid gap={4} columns={[1, 3]} sx={{ px: [3, 4] }}>*/}
+              {/*    {blogPosts.map(post => (*/}
+              {/*      <BlogPostCard key={post.link} blogPost={post} />*/}
+              {/*    ))}*/}
+              {/*  </Grid>*/}
+              {/*</Stack>*/}
             </Container>
           </section>
         </Stack>
