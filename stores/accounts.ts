@@ -47,7 +47,7 @@ const [useAccountsStore, accountsApi] = create<Store>((set, get) => ({
 
       const { address } = account;
       const [{ hasProxy, voteProxy }] = await Promise.all([
-        maker.service('voteProxy').getVoteProxy(address),
+        maker.service('voteProxy').getVoteProxy(address)
         // getOldProxyStatus(address, maker)
       ]);
 
@@ -55,7 +55,7 @@ const [useAccountsStore, accountsApi] = create<Store>((set, get) => ({
 
       set({
         currentAccount: account,
-        proxies: { ...get().proxies, [address]: hasProxy ? voteProxy : null },
+        proxies: { ...get().proxies, [address]: hasProxy ? voteProxy : null }
         // oldProxy
       });
     });

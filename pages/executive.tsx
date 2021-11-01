@@ -89,9 +89,7 @@ export const ExecutiveOverview = ({ proposals }: { proposals: Proposal[] }): JSX
   const account = useAccountsStore(state => state.currentAccount);
   const { trackButtonClick } = useAnalytics(ANALYTICS_PAGES.EXECUTIVE);
   const [voteProxy, voteDelegate] = useAccountsStore(state =>
-    account
-      ? [state.proxies[account.address], state.voteDelegate]
-      : [null, null, null]
+    account ? [state.proxies[account.address], state.voteDelegate] : [null, null, null]
   );
   const [numHistoricalProposalsLoaded, setNumHistoricalProposalsLoaded] = useState(5);
   const [showHistorical, setShowHistorical] = React.useState(false);

@@ -22,10 +22,10 @@ const POLLING_INTERVAL = 12000;
 
 export type ConnectorName = 'MetaMask' | 'WalletConnect' | 'Coinbase Wallet' | 'Trezor' | 'Ledger';
 
-export const injectedConnector = new InjectedConnector({ supportedChainIds: [ 106, 111] });
+export const injectedConnector = new InjectedConnector({ supportedChainIds: [106, 111] });
 
 export const connectors: Array<[ConnectorName, AbstractConnector]> = [
-  ['MetaMask', injectedConnector],
+  ['MetaMask', injectedConnector]
   // [
   //   'WalletConnect',
   //   new WalletConnectConnector({

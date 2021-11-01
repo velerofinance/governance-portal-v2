@@ -7,11 +7,12 @@ export const DEFAULT_NETWORK = SupportedNetworks.VELAS;
 
 export const ETHERSCAN_PREFIXES = {
   [SupportedNetworks.VELAS]: '',
-  [SupportedNetworks.VELASTESTNET]: 'testnet.',
+  [SupportedNetworks.VELASTESTNET]: 'testnet.'
 };
 
-export const ETH_TX_STATE_DIFF_ENDPOINT = (network: SupportedNetworks.VELAS | SupportedNetworks.VELASTESTNET) =>
-  `https://statediff.ethtx.info/api/decode/state-diffs/${network}`;
+export const ETH_TX_STATE_DIFF_ENDPOINT = (
+  network: SupportedNetworks.VELAS | SupportedNetworks.VELASTESTNET
+) => `https://statediff.ethtx.info/api/decode/state-diffs/${network}`;
 
 export const ABSTAIN = 0;
 

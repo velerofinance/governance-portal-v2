@@ -75,7 +75,7 @@ async function getMaker(network?: SupportedNetworks): Promise<Maker> {
       plugins: [
         [McdPlugin, { prefetch: false }],
         [GovernancePlugin, { network: currentNetwork, staging: !config.USE_PROD_SPOCK }],
-        Web3ReactPlugin,
+        Web3ReactPlugin
         // LedgerPlugin,
         // TrezorPlugin
       ],

@@ -15,8 +15,8 @@ const DefaultScreen = ({ setShowDialog, setStep }: Props): JSX.Element => (
       Are you sure you want to burn VDGT?
     </Text>
     <Text variant="text" sx={{ mt: 3, textAlign: 'center' }}>
-      By burning your VDGT in the ESM, you are contributing to the shutdown of the Usdv Credit System. Your VDGT
-      will be immediately burned and cannot be retrieved.
+      By burning your VDGT in the ESM, you are contributing to the shutdown of the Usdv Credit System. Your
+      VDGT will be immediately burned and cannot be retrieved.
     </Text>
     <Grid columns={2} mt={4}>
       <Button

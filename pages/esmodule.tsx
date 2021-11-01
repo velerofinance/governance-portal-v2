@@ -161,8 +161,7 @@ const ESModule = (): React.ReactElement => {
         <Text variant="text" sx={{ color: 'onSecondary' }}>
           The ESM allows VDGT holders to shutdown the system without a central authority. Once{' '}
           {thresholdAmount ? thresholdAmount.toBigNumber().toFormat() : '---'} VDGT are entered into the ESM,
-          emergency shutdown can be executed.{' '}
-          {/*<Link*/}
+          emergency shutdown can be executed. {/*<Link*/}
           {/*  href="https://docs.makerdao.com/smart-contract-modules/emergency-shutdown-module"*/}
           {/*  target="_blank"*/}
           {/*>*/}

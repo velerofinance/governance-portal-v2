@@ -227,14 +227,13 @@ const AccountSelect = (): React.ReactElement => {
     }
   };
 
-  const walletOptions = connectors
-    .map(([name, connector]) => (
-      <Flex sx={walletButtonStyle as any} key={name} onClick={() => onClickConnector(connector, name)}>
-        <Icon name={name} />
-        <Text sx={{ ml: 3 }}>{loadingConnectors[name] ? 'Loading...' : name}</Text>
-      </Flex>
-    ));
-    // .concat([<TrezorButton key="trezor" />, <LedgerButton key="ledger" />]);
+  const walletOptions = connectors.map(([name, connector]) => (
+    <Flex sx={walletButtonStyle as any} key={name} onClick={() => onClickConnector(connector, name)}>
+      <Icon name={name} />
+      <Text sx={{ ml: 3 }}>{loadingConnectors[name] ? 'Loading...' : name}</Text>
+    </Flex>
+  ));
+  // .concat([<TrezorButton key="trezor" />, <LedgerButton key="ledger" />]);
 
   const BackButton = ({ onClick }) => (
     <Flex sx={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
