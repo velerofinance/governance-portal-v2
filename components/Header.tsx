@@ -83,6 +83,20 @@ const Header = (props): JSX.Element => {
         {/*  </NavLink>*/}
         {/*</Link>*/}
 
+        <Link href={{ pathname: '/account', query: { network } }} passHref>
+          <NavLink
+            title="Account"
+            p={0}
+            sx={{
+              display: ['none', 'block'],
+              ml: [0, 4, 4, 5],
+              color: router?.asPath?.startsWith('/account') ? 'primary' : undefined
+            }}
+          >
+            Account
+          </NavLink>
+        </Link>
+
         <Link href={{ pathname: '/esmodule', query: { network } }} passHref>
           <NavLink
             title="ES Module"
