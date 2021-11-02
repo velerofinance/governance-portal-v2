@@ -100,7 +100,7 @@ const AccountBox = ({ address, accountName, change }: Props): JSX.Element => {
             }
           }}
         >
-          View on Etherscan
+          Velas Explorer
           <Icon name="arrowTopRight" size={2} sx={{ ml: 1 }} />
         </ExternalLink>
       </Flex>

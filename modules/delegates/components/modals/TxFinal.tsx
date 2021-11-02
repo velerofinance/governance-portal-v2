@@ -27,7 +27,7 @@ export const TxFinal = ({ title, description, buttonLabel, onClick, tx, success 
       sx={{ my: 3 }}
     >
       <Text mt={3} px={4} sx={{ textAlign: 'center', fontSize: 14, color: 'accentBlue' }}>
-        View on Etherscan
+        Velas Explorer
         <Icon name="arrowTopRight" pt={2} color="accentBlue" />
       </Text>
     </Link>

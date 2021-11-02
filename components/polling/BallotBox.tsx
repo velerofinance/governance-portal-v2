@@ -52,7 +52,7 @@ export default function BallotBox({ ballot, activePolls, network, polls }: Props
               sx={{ p: 0 }}
             >
               <Text mt={3} px={4} mb={4} sx={{ textAlign: 'center', fontSize: 14, color: 'accentBlue' }}>
-                View on Etherscan
+                View on Velas Explorer
                 <Icon name="arrowTopRight" pt={2} color="accentBlue" />
               </Text>
             </ExternalLink>

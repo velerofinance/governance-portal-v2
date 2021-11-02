@@ -379,7 +379,7 @@ const Pending = ({ tx, close }) => (
         sx={{ p: 0 }}
       >
         <Text as="p" mt={3} px={4} sx={{ textAlign: 'center', fontSize: 14, color: 'accentBlue' }}>
-          View on Etherscan
+          Velas Explorer
           <Icon name="arrowTopRight" pt={2} color="accentBlue" />
         </Text>
       </ExternalLink>

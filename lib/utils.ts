@@ -63,7 +63,7 @@ export function getEtherscanLink(
 ): string {
   const prefix = `https://${
     ETHERSCAN_PREFIXES[network] || ETHERSCAN_PREFIXES[SupportedNetworks.VELAS]
-  }evmexplorer.velas.com/`;
+  }velas.com`;
 
   switch (type) {
     case 'transaction':

@@ -6,8 +6,8 @@ export enum SupportedNetworks {
 export const DEFAULT_NETWORK = SupportedNetworks.VELAS;
 
 export const ETHERSCAN_PREFIXES = {
-  [SupportedNetworks.VELAS]: '',
-  [SupportedNetworks.VELASTESTNET]: 'testnet.'
+  [SupportedNetworks.VELAS]: 'evmexplorer.',
+  [SupportedNetworks.VELASTESTNET]: 'evmexplorer.testnet.'
 };
 
 export const ETH_TX_STATE_DIFF_ENDPOINT = (
