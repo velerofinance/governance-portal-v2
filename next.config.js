@@ -52,7 +52,10 @@ const SentryWebpackPluginOptions = {
   //   release, url, org, project, authToken, configFile, stripPrefix,
   //   urlPrefix, include, ignore
 
-  silent: true // Suppresses all logs
+  silent: true, // Suppresses all logs
+  org: 'velerofinance',
+  project: 'velerofinance',
+  authToken: '75d67e12fec6483391913af4d853d3f7c44b71762d2c466bb19bf04b90e8e7a7'
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.
 };
