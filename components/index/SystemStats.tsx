@@ -94,14 +94,14 @@ export default function SystemStats(): JSX.Element {
         <Grid sx={{ p: 3 }}>
           <Flex sx={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text sx={{ fontSize: 3, fontWeight: '500', color: 'text' }}>System Stats</Text>
-            <ExternalLink href="https://daistats.com/" target="_blank">
-              <Flex sx={{ alignItems: 'center' }}>
-                <Text sx={{ color: 'accentBlue', fontSize: 3 }}>
-                  View more
-                  <Icon ml="2" name="arrowTopRight" size="2" />
-                </Text>
-              </Flex>
-            </ExternalLink>
+            {/*<ExternalLink href="https://daistats.com/" target="_blank">*/}
+            {/*  <Flex sx={{ alignItems: 'center' }}>*/}
+            {/*    <Text sx={{ color: 'accentBlue', fontSize: 3 }}>*/}
+            {/*      View more*/}
+            {/*      <Icon ml="2" name="arrowTopRight" size="2" />*/}
+            {/*    </Text>*/}
+            {/*  </Flex>*/}
+            {/*</ExternalLink>*/}
           </Flex>
 
           {infoUnits.map(unit => (
