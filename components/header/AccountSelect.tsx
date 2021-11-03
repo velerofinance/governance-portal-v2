@@ -77,9 +77,6 @@ const AccountSelect = (): React.ReactElement => {
       setChainIdError('network mismatch');
   }, [chainId, error]);
 
-  if (chainId !== undefined) {
-    console.log(`fucking fuck for network ${chainId}`);
-  }
   // FIXME there must be a more direct way to get web3-react & maker to talk to each other
   syncMakerAccount(
     library,

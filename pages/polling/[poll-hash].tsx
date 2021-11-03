@@ -265,19 +265,19 @@ const PollView = ({ poll, polls: prefetchedPolls }: { poll: Poll; polls: Poll[] 
                     />,
                     shownOptions < Object.keys(poll.options).length,
                     // shownOptions < Object.keys(poll.options).length && (
-                      // <Box sx={{ px: 4, pb: 3 }} key={'view more'}>
-                      //   <Button
-                      //     variant="mutedOutline"
-                      //     onClick={() => {
-                      //       setShownOptions(shownOptions + 6);
-                      //     }}
-                      //   >
-                      //     <Flex sx={{ alignItems: 'center' }}>
-                      //       View more
-                      //       <Icon name="chevron_down" size="2" ml={2} />
-                      //     </Flex>
-                      //   </Button>
-                      // </Box>
+                    // <Box sx={{ px: 4, pb: 3 }} key={'view more'}>
+                    //   <Button
+                    //     variant="mutedOutline"
+                    //     onClick={() => {
+                    //       setShownOptions(shownOptions + 6);
+                    //     }}
+                    //   >
+                    //     <Flex sx={{ alignItems: 'center' }}>
+                    //       View more
+                    //       <Icon name="chevron_down" size="2" ml={2} />
+                    //     </Flex>
+                    //   </Button>
+                    // </Box>
                     // ),
                     <Divider key={'divider'} />,
                     <Flex sx={{ p: [3, 4], flexDirection: 'column' }} key={'voting stats'}>
