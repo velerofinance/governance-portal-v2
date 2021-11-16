@@ -18,8 +18,8 @@ const ExecutiveCreate = () => {
   const [summary, setSummary] = useState('');
   const [markdown, setMarkdown] = useState('');
   const [date, setDate] = useState('');
-  const [mainnetAddress, setMainnetAddress] = useState('');
-  const [kovanAddress, setKovanAddress] = useState('');
+  const [velasAddress, setVelasAddress] = useState('');
+  const [velastestnetAddress, setVelastestnetAddress] = useState('');
   const [error, setError] = useState(['']);
   const [fetchFinished, setFetchFinished] = useState(false);
   const fields = [
@@ -53,19 +53,19 @@ const ExecutiveCreate = () => {
     if (!metadata.summary) setError(e => [...e, 'missing summary']);
     if (!execMarkdown) setError(e => [...e, 'missing markdown']);
     if (!metadata.date) setError(e => [...e, 'missing date']);
-    if (!metadata.address) setError(e => [...e, 'missing mainnet address']);
+    if (!metadata.address) setError(e => [...e, 'missing velas address']);
     else {
       try {
         ethers.utils.getAddress(metadata.address);
       } catch (_) {
-        setError(e => [...e, 'invalid mainnet address']);
+        setError(e => [...e, 'invalid velas address']);
       }
     }
     if (metadata.kovanAddress) {
       try {
         ethers.utils.getAddress(metadata.kovanAddress);
       } catch (_) {
-        setError(e => [...e, 'invalid kovan address']);
+        setError(e => [...e, 'invalid velas address']);
       }
     }
 
@@ -77,8 +77,8 @@ const ExecutiveCreate = () => {
     setTitle(editedTitle);
     setSummary(metadata.summary);
     setDate(metadata.date ? new Date(metadata.date).toUTCString() : '');
-    setMainnetAddress(metadata.address);
-    setKovanAddress(metadata.kovanAddress);
+    setVelasAddress(metadata.address);
+    setVelastestnetAddress(metadata.kovanAddress);
     setMarkdown(await markdownToHtml(execMarkdown));
   };
 
@@ -181,27 +181,27 @@ const ExecutiveCreate = () => {
                         <TD>{value}</TD>
                       </tr>
                     ))}
-                    <tr key={'Mainnet Address'}>
+                    <tr key={'Velas Address'}>
                       <TD>Velas Address</TD>
                       <TD>
                         <Link
                           target="_blank"
-                          href={getEtherscanLink(SupportedNetworks.VELAS, mainnetAddress, 'address')}
+                          href={getEtherscanLink(SupportedNetworks.VELAS, velasAddress, 'address')}
                           sx={{ p: 0 }}
                         >
-                          {mainnetAddress}
+                          {velasAddress}
                         </Link>
                       </TD>
                     </tr>
-                    <tr key={'Kovan Address'}>
+                    <tr key={'Velas Testnet Address'}>
                       <TD>VelasTestnet Address</TD>
                       <TD>
                         <Link
                           target="_blank"
-                          href={getEtherscanLink(SupportedNetworks.VELASTESTNET, kovanAddress, 'address')}
+                          href={getEtherscanLink(SupportedNetworks.VELASTESTNET, velastestnetAddress, 'address')}
                           sx={{ p: 0 }}
                         >
-                          {kovanAddress}
+                          {velastestnetAddress}
                         </Link>
                       </TD>
                     </tr>

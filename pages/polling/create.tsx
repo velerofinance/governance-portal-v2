@@ -11,9 +11,9 @@ import SidebarLayout from 'components/layouts/Sidebar';
 import Stack from 'components/layouts/Stack';
 import Tabs from 'components/Tabs';
 import PollCreateModal from 'components/PollCreateModal';
-import SystemStatsSidebar from 'components/SystemStatsSidebar';
-import MkrLiquiditySidebar from 'components/MkrLiquiditySidebar';
-import ResourceBox from 'components/ResourceBox';
+// import SystemStatsSidebar from 'components/SystemStatsSidebar';
+// import MkrLiquiditySidebar from 'components/MkrLiquiditySidebar';
+// import ResourceBox from 'components/ResourceBox';
 import { validateUrl } from 'modules/polling/helpers/validator';
 import { Poll } from 'modules/polling/types';
 import Hash from 'ipfs-only-hash';
@@ -200,10 +200,10 @@ const PollingCreate = (): React.ReactElement => {
           </Box>
           {bpi >= 3 && (
             <Stack gap={3}>
-              <SystemStatsSidebar
-                fields={['chief contract', 'mkr needed to pass', 'savings rate', 'total dai', 'debt ceiling']}
-              />
-              <MkrLiquiditySidebar />
+              {/*<SystemStatsSidebar*/}
+              {/*  fields={['chief contract', 'mkr needed to pass', 'savings rate', 'total dai', 'debt ceiling']}*/}
+              {/*/>*/}
+              {/*<MkrLiquiditySidebar />*/}
               {/*<ResourceBox />*/}
             </Stack>
           )}
