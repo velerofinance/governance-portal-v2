@@ -18,21 +18,21 @@ index 0000000..8e58439
 +}
 diff --git a/node_modules/@makerdao/dai-plugin-governance/contracts/addresses/velastestnet.json b/node_modules/@makerdao/dai-plugin-governance/contracts/addresses/velastestnet.json
 new file mode 100644
-index 0000000..aba1e55
+index 0000000..2ad8605
 --- /dev/null
 +++ b/node_modules/@makerdao/dai-plugin-governance/contracts/addresses/velastestnet.json
 @@ -0,0 +1,12 @@
 +{
-+  "MCD_ADM": "0xD866F0422fa0EC6aCa99e8af8a5FF5DA913A3ccD",
-+  "VOTE_PROXY_FACTORY": "0x9E07de2Ac566d4a2d5Ceae843396a6CcD083c799",
-+  "VOTE_DELEGATE_FACTORY": "0x4947BDb54aA272a8d6bEFeef1E0e4755f08FF74F",
-+  "GOV": "0x7809B1861e10c86d02957b776deB23847168e230",
-+  "MCD_IOU": "0xf4bD648b022B3ed4748bFcE529300EE88Cf1E87B",
-+  "POLLING": "0xF9be8F0945acDdeeDaA64DFCA5Fe9629D0CF8E5D",
-+  "BATCH_POLLING": "0xD3A9FE267852281a1e6307a1C37CDfD76d39b133",
-+  "MCD_ESM": "0x52f827a8975Cd56F82E375cf06291CF8A8029694",
-+  "MCD_END": "0xB1b02BB0B0Ca25C05eDAbe13E432760ee381c510",
-+  "PAUSE": "0x5BE6bd3BaC249C56FF3f08875e675b22378641e8"
++  "MCD_ADM": "0xeB79E02a85C5dDdBFD00d7783667deeB6c4D5FDF",
++  "VOTE_PROXY_FACTORY": "0x1D5C3d90996D38d41642Da4ff59B0b723650421e",
++  "VOTE_DELEGATE_FACTORY": "0x079578a2240CEA9b0EBACDB343ee5BbC772fa3b0",
++  "GOV": "0x13F25396Fd50E6Df2Bb8D42F8B129BDCfeb94286",
++  "MCD_IOU": "0x3C911EbFcCb5B4118b76B997a8EBD0c78C4dDFa0",
++  "POLLING": "0x95F5F581359D3917421ad5F95E2EED810482B36e",
++  "BATCH_POLLING": "0xA55507751bfa5A61FDBe1BDdf04d53431aA7b276",
++  "MCD_ESM": "0x827421025228F40F0a6685d734167495A04BC1b4",
++  "MCD_END": "0xc0FF078aDebc9Ee23D106fD5cB7C2F64d36A54e3",
++  "PAUSE": "0x0D15d67e719c25794a636552A3f9BfAB2Ae553f7"
 +}
 diff --git a/node_modules/@makerdao/dai-plugin-governance/contracts/contract-info.json b/node_modules/@makerdao/dai-plugin-governance/contracts/contract-info.json
 index 8e448e0..6b5b6b7 100644
