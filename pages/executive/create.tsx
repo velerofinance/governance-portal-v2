@@ -198,7 +198,11 @@ const ExecutiveCreate = () => {
                       <TD>
                         <Link
                           target="_blank"
-                          href={getEtherscanLink(SupportedNetworks.VELASTESTNET, velastestnetAddress, 'address')}
+                          href={getEtherscanLink(
+                            SupportedNetworks.VELASTESTNET,
+                            velastestnetAddress,
+                            'address'
+                          )}
                           sx={{ p: 0 }}
                         >
                           {velastestnetAddress}
