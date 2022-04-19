@@ -121,7 +121,8 @@ const LandingPage = ({ proposals }: Props) => {
                       px: [3, 'inherit']
                     }}
                   >
-                    Join a decentralized community protecting the integrity of the Velero Protocol through on-chain voting.
+                    Join a decentralized community protecting the integrity of the Velero Protocol through
+                    on-chain voting.
                   </Text>
                   <Flex
                     sx={{ flexDirection: ['column', 'row'], width: ['100%', '85%'], alignSelf: 'center' }}
