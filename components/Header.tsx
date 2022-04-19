@@ -54,19 +54,19 @@ const Header = (props): JSX.Element => {
           </NavLink>
         </Link>
 
-        {/*<Link href={{ pathname: '/delegates', query: { network } }} passHref>*/}
-        {/*  <NavLink*/}
-        {/*    title="Delegates"*/}
-        {/*    p={0}*/}
-        {/*    sx={{*/}
-        {/*      display: ['none', 'block'],*/}
-        {/*      ml: [0, 4, 4, 5],*/}
-        {/*      color: router?.asPath?.startsWith('/delegates') ? 'primary' : undefined*/}
-        {/*    }}*/}
-        {/*  >*/}
-        {/*    Delegates*/}
-        {/*  </NavLink>*/}
-        {/*</Link>*/}
+        <Link href={{ pathname: 'https://t.me/velerodao' }} passHref>
+          <NavLink
+            title="News Channel"
+            p={0}
+            target='_blank'
+            sx={{
+              display: ['none', 'block'],
+              ml: [0, 4, 4, 5],
+            }}
+          >
+            News Channel
+          </NavLink>
+        </Link>
 
         {/*<Link href={{ pathname: '/account', query: { network } }} passHref>*/}
         {/*  <NavLink*/}
@@ -131,6 +131,9 @@ const MobileMenu = ({ hide, network, router }) => {
         <Divider sx={{ width: '100%' }} />
         <Link href={{ pathname: '/executive', query: { network } }}>
           <NavLink>Executive</NavLink>
+        </Link>
+        <Link href={{ pathname: 'https://t.me/velerodao' }}>
+          <NavLink target='_blank' >News Channel</NavLink>
         </Link>
         <Divider sx={{ width: '100%' }} />
       </Flex>
