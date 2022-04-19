@@ -10,9 +10,7 @@ export default withApiHandler(async (req: NextApiRequest, res: NextApiResponse) 
   invariant(isSupportedNetwork(network), `unsupported network ${network}`);
 
   const maker = await getMaker(network);
-  const [allSupporters] = await Promise.all([
-    maker.service('chief').getVoteTally(),
-  ]);
+  const [allSupporters] = await Promise.all([maker.service('chief').getVoteTally()]);
 
   // handle percent and check address for delegate name
   Object.keys(allSupporters).forEach(spell => {

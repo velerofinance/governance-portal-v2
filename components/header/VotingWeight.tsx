@@ -12,7 +12,6 @@ export default function VotingWeight(props): JSX.Element {
     (_, address) => getMaker().then(maker => maker.service('govPolling').getMkrWeightFromChain(address))
   );
 
-
   return (
     <>
       <Flex {...props} sx={{ justifyContent: 'space-between' }}>

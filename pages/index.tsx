@@ -206,18 +206,14 @@ const LandingPage = ({ proposals }: Props) => {
   );
 };
 
-export default function Index({
-  proposals: prefetchedProposals,
-}: Props): JSX.Element {
+export default function Index({ proposals: prefetchedProposals }: Props): JSX.Element {
   // fetch polls & proposals at run-time if on any network other than the default
   const [proposals, setProposals] = useState<CMSProposal[]>(prefetchedProposals);
   const [error, setError] = useState<string>();
 
   useEffect(() => {
     if (!isDefaultNetwork() && !proposals) {
-      Promise.all([
-        fetchJson(`/api/executive?network=${getNetwork()}`)
-      ])
+      Promise.all([fetchJson(`/api/executive?network=${getNetwork()}`)])
         .then(([proposals]) => {
           setProposals(proposals);
         })
@@ -236,20 +232,18 @@ export default function Index({
       </PrimaryLayout>
     );
 
-  return <LandingPage proposals={proposals}/>;
+  return <LandingPage proposals={proposals} />;
 }
 
 export const getStaticProps: GetStaticProps = async () => {
   // fetch polls, proposals, blog posts at build-time
 
-  const [proposals] = await Promise.all([
-    getExecutiveProposals(),
-  ]);
+  const [proposals] = await Promise.all([getExecutiveProposals()]);
 
   return {
     revalidate: 30, // allow revalidation every 30 seconds
     props: {
-      proposals,
+      proposals
     }
   };
 };

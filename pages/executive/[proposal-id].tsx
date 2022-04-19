@@ -228,7 +228,7 @@ const ProposalView = ({ proposal }: Props): JSX.Element => {
                 <Tabs
                   tabListStyles={{ pl: [3, 4] }}
                   tabTitles={[
-                    'Proposal Detail',
+                    'Proposal Detail'
                     // ch401: hide until API is fixed
                     // 'On-Chain Effects',
                     // `Comments ${comments ? `(${comments.length})` : ''}`
@@ -238,7 +238,7 @@ const ProposalView = ({ proposal }: Props): JSX.Element => {
                       key={1}
                       sx={{ variant: 'markdown.default', p: [3, 4] }}
                       dangerouslySetInnerHTML={{ __html: editMarkdown(proposal.content) }}
-                    />,
+                    />
                     // onChainFxTab,
                     // commentsTab
                   ]}

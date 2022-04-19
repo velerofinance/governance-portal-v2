@@ -17,10 +17,7 @@ import { AddressApiResponse } from 'modules/address/types/addressApiResponse';
 import { AddressDetail } from 'modules/address/components/AddressDetail';
 
 const AddressView = ({ addressInfo }: { addressInfo: AddressApiResponse }) => {
-
-  const { trackButtonClick } = useAnalytics(
-    ANALYTICS_PAGES.ADDRESS_DETAIL
-  );
+  const { trackButtonClick } = useAnalytics(ANALYTICS_PAGES.ADDRESS_DETAIL);
 
   return (
     <PrimaryLayout shortenFooter={true} sx={{ maxWidth: [null, null, null, 'page', 'dashboard'] }}>
@@ -31,12 +28,7 @@ const AddressView = ({ addressInfo }: { addressInfo: AddressApiResponse }) => {
       <SidebarLayout>
         <Stack gap={2}>
           <Box>
-            {(
-              <AddressDetail
-                address={addressInfo.address}
-                voteProxyInfo={addressInfo.voteProxyInfo}
-              />
-            )}
+            {<AddressDetail address={addressInfo.address} voteProxyInfo={addressInfo.voteProxyInfo} />}
           </Box>
         </Stack>
         <Stack gap={3}>

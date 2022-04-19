@@ -40,7 +40,6 @@ const Header = (props): JSX.Element => {
         </IconButton>
       </Link>
       <Flex sx={{ flexDirection: 'row', alignItems: 'center' }}>
-
         <Link href={{ pathname: '/executive', query: { network } }} passHref>
           <NavLink
             p={0}
