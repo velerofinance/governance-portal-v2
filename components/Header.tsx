@@ -58,10 +58,10 @@ const Header = (props): JSX.Element => {
           <NavLink
             title="News Channel"
             p={0}
-            target='_blank'
+            target="_blank"
             sx={{
               display: ['none', 'block'],
-              ml: [0, 4, 4, 5],
+              ml: [0, 4, 4, 5]
             }}
           >
             News Channel
@@ -133,7 +133,7 @@ const MobileMenu = ({ hide, network, router }) => {
           <NavLink>Executive</NavLink>
         </Link>
         <Link href={{ pathname: 'https://t.me/velerodao' }}>
-          <NavLink target='_blank' >News Channel</NavLink>
+          <NavLink target="_blank">News Channel</NavLink>
         </Link>
         <Divider sx={{ width: '100%' }} />
       </Flex>
