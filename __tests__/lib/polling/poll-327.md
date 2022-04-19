@@ -11,7 +11,7 @@ options:
 ---
 # Poll: Add an ETH-B Vault Type - October 5, 2020
 
-The VELERO Governance Facilitator has placed a Governance Poll into the [voting system](https://vote.makerdao.com/polling) on behalf of the Velero Governance Community. The community can use this poll to express support or opposition for an **ETH-B Vault Type**.
+[//]: # (The VELERO Governance Facilitator has placed a Governance Poll into the [voting system]&#40;https://vote.makerdao.com/polling&#41; on behalf of the Velero Governance Community. The community can use this poll to express support or opposition for an **ETH-B Vault Type**.)
 
 The proposed initial Risk Parameters for ETH-B are:
 

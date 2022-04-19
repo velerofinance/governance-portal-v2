@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 import { NextApiRequest, NextApiResponse } from 'next';
 import uniqBy from 'lodash/uniqBy';
 
-import { connectToDatabase } from 'lib/api/utils';
+// import { connectToDatabase } from 'lib/api/utils';
 import withApiHandler from 'lib/api/withApiHandler';
 import { SupportedNetworks } from 'lib/constants';
 
@@ -17,19 +17,19 @@ export default withApiHandler(async (req: NextApiRequest, res: NextApiResponse) 
     `unsupported network ${req.query.network}`
   );
 
-  const { db, client } = await connectToDatabase();
+  // const { db, client } = await connectToDatabase();
 
-  invariant(await client.isConnected(), 'mongo client failed to connect');
+  // invariant(await client.isConnected(), 'mongo client failed to connect');
 
-  const collection = db.collection('executiveComments');
+  // const collection = db.collection('executiveComments');
   // decending sort
-  const comments = await collection.find({ spellAddress }).sort({ date: -1 }).toArray();
+  // const comments = await collection.find({ spellAddress }).sort({ date: -1 }).toArray();
 
-  comments.forEach(comment => {
-    delete comment._id;
-  });
+  // comments.forEach(comment => {
+  //   delete comment._id;
+  // });
 
   res.setHeader('Cache-Control', 's-maxage=1, stale-while-revalidate');
   // only return the latest comment from each address
-  res.status(200).json(uniqBy(comments, 'voterAddress'));
+  res.status(200).json(uniqBy([], 'voterAddress'));
 });

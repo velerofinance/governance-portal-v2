@@ -34,15 +34,6 @@ const moduleExports = {
     config.resolve.alias['stores'] = path.join(__dirname, 'stores');
     return config;
   },
-
-  async rewrites() {
-    return [
-      {
-        source: '/delegates/:address',
-        destination: '/address/:address'
-      }
-    ];
-  }
 };
 
 const SentryWebpackPluginOptions = {

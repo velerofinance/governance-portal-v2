@@ -9,7 +9,6 @@ import { CurrencyObject } from 'types/currency';
 import { SpellStateDiff } from 'types/spellStateDiff';
 import { SupportedNetworks, ETHERSCAN_PREFIXES } from './constants';
 import getMaker from './maker';
-import mockPolls from 'modules/polling/api/mocks/polls.json';
 import round from 'lodash/round';
 
 export function bigNumberKFormat(num: CurrencyObject): string {
@@ -143,22 +142,6 @@ export function parseSpellStateDiff(rawStateDiff): SpellStateDiff {
   }, {});
 
   return { hasBeenCast, executedOn, groupedDiff };
-}
-
-export async function initTestchainPolls() {
-  const maker = await getMaker();
-  const pollingService = maker.service('govPolling');
-  const hash = 'dummy hash';
-
-  // This detects whether the mock polls have been deployed yet
-  const testTx = await pollingService.createPoll(now(), now() + 500000, hash, hash);
-  if (testTx !== 0) return;
-
-  console.log('setting up some polls on the testchain...');
-  return mockPolls.map(async poll => {
-    const id = await pollingService.createPoll(now(), now() + 50000, hash, poll.url);
-    console.log(`created poll #${id}`);
-  });
 }
 
 function now() {

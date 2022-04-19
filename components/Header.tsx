@@ -6,7 +6,6 @@ import { Icon } from '@makerdao/dai-ui-icons';
 
 import { getNetwork } from 'lib/maker';
 import AccountSelect from './header/AccountSelect';
-import BallotStatus from './polling/BallotStatus';
 import { useState, useEffect } from 'react';
 import { useBreakpointIndex } from '@theme-ui/match-media';
 import useAccountsStore from 'stores/accounts';
@@ -41,19 +40,6 @@ const Header = (props): JSX.Element => {
         </IconButton>
       </Link>
       <Flex sx={{ flexDirection: 'row', alignItems: 'center' }}>
-        <Link href={{ pathname: '/polling', query: { network } }} passHref>
-          <NavLink
-            title="Polling"
-            p={0}
-            sx={{
-              display: ['none', 'block'],
-              ml: [0, 4, 'auto'],
-              color: router?.asPath?.startsWith('/polling') ? 'primary' : undefined
-            }}
-          >
-            Polling
-          </NavLink>
-        </Link>
 
         <Link href={{ pathname: '/executive', query: { network } }} passHref>
           <NavLink
@@ -97,26 +83,11 @@ const Header = (props): JSX.Element => {
         {/*  </NavLink>*/}
         {/*</Link>*/}
 
-        <Link href={{ pathname: '/esmodule', query: { network } }} passHref>
-          <NavLink
-            title="ES Module"
-            p={0}
-            sx={{
-              display: ['none', 'block'],
-              ml: [0, 4, 4, 5],
-              mr: [0, 'auto', 4, 5],
-              color: router?.asPath?.startsWith('/esmodule') ? 'primary' : undefined
-            }}
-          >
-            ES Module
-          </NavLink>
-        </Link>
-
         <Flex sx={{ pr: 2 }}>
           <ColorModeToggle />
         </Flex>
 
-        {bpi > 1 && account && router.pathname.includes('polling') && <BallotStatus mr={3} />}
+        {bpi > 1 && account && router.pathname.includes('polling')}
         <AccountSelect />
 
         <IconButton
@@ -159,21 +130,10 @@ const MobileMenu = ({ hide, network, router }) => {
           <NavLink>Home</NavLink>
         </Link>
         <Divider sx={{ width: '100%' }} />
-        <Link href={{ pathname: '/polling', query: { network } }}>
-          <NavLink>Polling</NavLink>
-        </Link>
-        <Divider sx={{ width: '100%' }} />
         <Link href={{ pathname: '/executive', query: { network } }}>
           <NavLink>Executive</NavLink>
         </Link>
         <Divider sx={{ width: '100%' }} />
-        <Link href={{ pathname: '/delegates', query: { network } }}>
-          <NavLink>Delegates</NavLink>
-        </Link>
-        <Divider sx={{ width: '100%' }} />
-        <Link href={{ pathname: '/esmodule', query: { network } }}>
-          <NavLink>ES Module</NavLink>
-        </Link>
       </Flex>
     </Container>
   );

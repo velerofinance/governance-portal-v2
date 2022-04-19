@@ -37,12 +37,12 @@ export default withApiHandler(
     );
 
     // query db
-    const { db, client } = await connectToDatabase();
+    // const { db } = await connectToDatabase();
 
-    invariant(await client.isConnected(), 'Mongo client failed to connect');
+    // invariant(await client.isConnected(), 'Mongo client failed to connect');
 
-    const collection = db.collection('executiveComments');
-    await collection.insertOne({ spellAddress, voterAddress, comment, voterWeight, date: new Date() });
+    // const collection = db.collection('executiveComments');
+    // await collection.insertOne({ spellAddress, voterAddress, comment, voterWeight, date: new Date() });
 
     res.status(200).json({ success: 'Added Successfully' });
   },

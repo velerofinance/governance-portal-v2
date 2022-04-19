@@ -32,7 +32,7 @@ import Stack from 'components/layouts/Stack';
 import Tabs from 'components/Tabs';
 import PrimaryLayout from 'components/layouts/Primary';
 import SidebarLayout from 'components/layouts/Sidebar';
-import ResourceBox from 'components/ResourceBox';
+// import ResourceBox from 'components/ResourceBox';
 // import OnChainFx from 'components/executive/OnChainFx';
 import { StatBox } from 'modules/shared/components/StatBox';
 
@@ -221,7 +221,7 @@ const ProposalView = ({ proposal }: Props): JSX.Element => {
                 value={spellData && new BigNumber(spellData.mkrSupport).toFormat(2)}
                 label="VDGT Support"
               />
-              <StatBox value={supporters && supporters.length} label="Supporters" />
+              {/*<StatBox value={supporters && supporters.length} label="Supporters" />*/}
             </Flex>
             {
               'about' in proposal ? (
@@ -231,7 +231,7 @@ const ProposalView = ({ proposal }: Props): JSX.Element => {
                     'Proposal Detail',
                     // ch401: hide until API is fixed
                     // 'On-Chain Effects',
-                    `Comments ${comments ? `(${comments.length})` : ''}`
+                    // `Comments ${comments ? `(${comments.length})` : ''}`
                   ]}
                   tabPanels={[
                     <div
@@ -240,7 +240,7 @@ const ProposalView = ({ proposal }: Props): JSX.Element => {
                       dangerouslySetInnerHTML={{ __html: editMarkdown(proposal.content) }}
                     />,
                     // onChainFxTab,
-                    commentsTab
+                    // commentsTab
                   ]}
                   banner={<ProposalTimingBanner proposal={proposal} spellData={spellData} />}
                 ></Tabs>
@@ -280,99 +280,6 @@ const ProposalView = ({ proposal }: Props): JSX.Element => {
               </Card>
             </>
           )}
-          <Box>
-            <Heading mt={3} mb={2} as="h3" variant="microHeading">
-              Supporters
-            </Heading>
-            <Card variant="compact" p={3} sx={{ height: '237px' }}>
-              <Box
-                sx={{
-                  overflowY: 'scroll',
-                  height: '100%',
-                  '::-webkit-scrollbar': {
-                    display: 'none'
-                  },
-                  scrollbarWidth: 'none'
-                }}
-              >
-                {supporters ? (
-                  supporters.map(supporter => (
-                    <Flex
-                      sx={{
-                        justifyContent: 'space-between',
-                        fontSize: [2, 3],
-                        lineHeight: '34px'
-                      }}
-                      key={supporter.address}
-                    >
-                      <Box sx={{ width: '55%' }}>
-                        <Text color="onSecondary">
-                          {supporter.percent}% ({new BigNumber(supporter.deposits).toFormat(2)} VDGT)
-                        </Text>
-                      </Box>
-
-                      <Box sx={{ width: '45%', textAlign: 'right' }}>
-                        <Link
-                          href={{
-                            pathname: `/address/${supporter.address}`,
-                            query: { network }
-                          }}
-                          passHref
-                        >
-                          <ThemeUILink sx={{ mt: 'auto' }} title="Profile details">
-                            {supporter.name ? (
-                              <Text
-                                sx={{
-                                  color: 'accentBlue',
-                                  fontSize: 3,
-                                  ':hover': { color: 'blueLinkHover' }
-                                }}
-                              >
-                                {limitString(supporter.name, bpi === 0 ? 14 : 22, '...')}
-                              </Text>
-                            ) : (
-                              <Text
-                                sx={{
-                                  color: 'accentBlue',
-                                  fontSize: 3,
-                                  ':hover': { color: 'blueLinkHover' }
-                                }}
-                              >
-                                {cutMiddle(supporter.address)}
-                              </Text>
-                            )}
-                          </ThemeUILink>
-                        </Link>
-                      </Box>
-                    </Flex>
-                  ))
-                ) : supportersError ? (
-                  <Flex
-                    sx={{
-                      height: '100%',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      fontSize: 4,
-                      color: 'onSecondary'
-                    }}
-                  >
-                    List of supporters currently unavailable
-                  </Flex>
-                ) : (
-                  <Flex
-                    sx={{
-                      height: '100%',
-                      justifyContent: 'center',
-                      alignItems: 'center'
-                    }}
-                  >
-                    <Spinner size={32} />
-                  </Flex>
-                )}
-              </Box>
-            </Card>
-          </Box>
-          {/*<ResourceBox />*/}
         </Stack>
       </SidebarLayout>
     </PrimaryLayout>

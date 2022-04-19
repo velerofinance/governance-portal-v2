@@ -17,8 +17,6 @@ export async function getExecutiveProposals(network?: SupportedNetworks): Promis
     if (cachedProposals) {
       return JSON.parse(cachedProposals);
     }
-  } else if (config.NEXT_PUBLIC_USE_MOCK || isTestnet()) {
-    return mockProposals;
   }
 
   const proposalIndex = await (await fetch(EXEC_PROPOSAL_INDEX)).json();

@@ -227,41 +227,41 @@ const VoteModal = ({ close, proposal, currentSlate = [] }: Props): JSX.Element =
             )}
           </Box>
         </Grid>
-        <Box sx={{ width: '100%', my: 3 }}>
-          <Box
-            sx={{
-              borderRadius: 'medium',
-              my: 2,
-              mb: 4,
-              width: '100%',
-              borderColor: 'secondaryMuted',
-              height: '96px'
-            }}
-          >
-            <Label variant="microHeading" sx={{ fontSize: 3 }}>
-              Why are you voting for this proposal?
-            </Label>
-            <Textarea
-              sx={{
-                color: 'text',
-                height: '96px',
-                justifyContent: 'flex-start',
-                alignItems: 'flex-start',
-                display: 'flex',
-                resize: 'none'
-              }}
-              onChange={event => setComment(event.target.value)}
-              placeholder="Optional. 250 character max. You'll be prompted to sign a message with your wallet."
-            />
-            <Text
-              as="p"
-              variant="text"
-              sx={{ fontSize: 1, color: comment.length > 250 ? 'error' : 'textMuted' }}
-            >
-              {250 - comment.length} characters remaining
-            </Text>
-          </Box>
-        </Box>
+        {/*<Box sx={{ width: '100%', my: 3 }}>*/}
+        {/*  <Box*/}
+        {/*    sx={{*/}
+        {/*      borderRadius: 'medium',*/}
+        {/*      my: 2,*/}
+        {/*      mb: 4,*/}
+        {/*      width: '100%',*/}
+        {/*      borderColor: 'secondaryMuted',*/}
+        {/*      height: '96px'*/}
+        {/*    }}*/}
+        {/*  >*/}
+        {/*    <Label variant="microHeading" sx={{ fontSize: 3 }}>*/}
+        {/*      Why are you voting for this proposal?*/}
+        {/*    </Label>*/}
+        {/*    <Textarea*/}
+        {/*      sx={{*/}
+        {/*        color: 'text',*/}
+        {/*        height: '96px',*/}
+        {/*        justifyContent: 'flex-start',*/}
+        {/*        alignItems: 'flex-start',*/}
+        {/*        display: 'flex',*/}
+        {/*        resize: 'none'*/}
+        {/*      }}*/}
+        {/*      onChange={event => setComment(event.target.value)}*/}
+        {/*      placeholder="Optional. 250 character max. You'll be prompted to sign a message with your wallet."*/}
+        {/*    />*/}
+        {/*    <Text*/}
+        {/*      as="p"*/}
+        {/*      variant="text"*/}
+        {/*      sx={{ fontSize: 1, color: comment.length > 250 ? 'error' : 'textMuted' }}*/}
+        {/*    >*/}
+        {/*      {250 - comment.length} characters remaining*/}
+        {/*    </Text>*/}
+        {/*  </Box>*/}
+        {/*</Box>*/}
         <Box sx={{ width: '100%', mt: 3 }}>
           <Button
             variant="primaryLarge"

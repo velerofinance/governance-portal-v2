@@ -6,19 +6,16 @@ import { Icon } from '@makerdao/dai-ui-icons';
 import { getNetwork } from 'lib/maker';
 import { getEtherscanLink } from 'lib/utils';
 import AddressIcon from './AddressIcon';
-import { PollVoteHistoryList } from 'modules/polling/components/PollVoteHistoryList';
 import { AddressAPIStats, VoteProxyInfo } from '../types/addressApiResponse';
 import Tooltip from 'components/Tooltip';
 import { cutMiddle } from 'lib/string';
-import { PollingParticipationOverview } from 'modules/polling/components/PollingParticipationOverview';
 
 type PropTypes = {
   address: string;
-  stats: AddressAPIStats;
   voteProxyInfo?: VoteProxyInfo;
 };
 
-export function AddressDetail({ address, stats, voteProxyInfo }: PropTypes): React.ReactElement {
+export function AddressDetail({ address, voteProxyInfo }: PropTypes): React.ReactElement {
   const bpi = useBreakpointIndex();
 
   const tooltipLabel = voteProxyInfo ? (
@@ -84,10 +81,6 @@ export function AddressDetail({ address, stats, voteProxyInfo }: PropTypes): Rea
         </Text>
         <Divider mt={3} />
       </Box>
-
-      <PollVoteHistoryList votes={stats.pollVoteHistory} />
-
-      <PollingParticipationOverview votes={stats.pollVoteHistory} />
     </Box>
   );
 }

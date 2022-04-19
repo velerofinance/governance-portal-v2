@@ -12,10 +12,8 @@ export type VoteProxyInfo = {
 };
 
 export type AddressApiResponse = {
-  isDelegate: boolean;
   isProxyContract: boolean;
   voteProxyInfo?: VoteProxyInfo;
   delegateInfo?: Delegate;
   address: string;
-  stats: AddressAPIStats;
 };
