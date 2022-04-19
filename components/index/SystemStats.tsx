@@ -45,10 +45,10 @@ export default function SystemStats(): JSX.Element {
       title: 'Usdv Debt Ceiling',
       value: debtCeiling ? `${debtCeiling.toBigNumber().toFormat(0)} USDV` : <Skeleton />
     },
-    {
-      title: 'System Surplus',
-      value: systemSurplus ? `${systemSurplus.toBigNumber().toFormat(0)} USDV` : <Skeleton />
-    }
+    // {
+    //   title: 'System Surplus',
+    //   value: systemSurplus ? `${systemSurplus.toBigNumber().toFormat(0)} USDV` : <Skeleton />
+    // }
   ];
   return (
     <>
